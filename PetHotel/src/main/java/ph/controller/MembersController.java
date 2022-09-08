@@ -21,6 +21,8 @@ public class MembersController {
 	@Resource(name = "memberService")
 	private MembersService service;
 
+	//test
+	
 	@RequestMapping(value = "/signUp.do", method = RequestMethod.GET)
 	public String signUp() {
 		return "member/signUp";
