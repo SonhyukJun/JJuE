@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ph.sqlmap.mappers.Members_SQL">
+	<resultMap type="members" id="membersResult">
+		<result property="memberId" column="memberId" />
+		<result property="memberPassword" column="memberPassword" />
+		<result property="memberCheckPassword" column="memberCheckPassword" />
+		<result property="memberName" column="memberName" />
+		<result property="memberNickname" column="memberNickname" />
+		<result property="memberResident" column="memberResident" />
+		<result property="memberAddress" column="memberAddress" />
+		<result property="memberTelNumber" column="memberTelNumber" />
+		<result property="memberSignDate" column="memberSignDate" />
+		<result property="memberGrade" column="memberGrade" />
+		<result property="memberRole" column="memberRole" />
+		<result property="memberEtc" column="memberEtc" />
+	</resultMap>
+	
+	<select id="memberId_check" resultType="int">
+		SELECT COUNT(*) FROM members WHERE memberID=#{memberId}
+	</select>
+	
+	<select id="memberNickname_check" resultType="int">
+		SELECT COUNT(*) FROM members WHERE memberNickname=#{memberNickname}
+	</select>
+	
+	<select id="memberTelNumber_check" resultType="int">
+		SELECT COUNT(*) FROM members WHERE memberTelNumber=#{memberTelNumber}
+	</select> 
+	
+	<select id="memberNickname_check2" resultType="int">
+		SELECT COUNT(*) FROM members WHERE memberId=#{memberId} and memberTelNumber=#{memberTelNumber}
+	</select>
+	
+	<select id="memberNickname" resultType="String">
+		select memberNickname from members where memberId=#{memberId}
+	</select>
+	
+	
+	<insert id="signUpMember">
+		insert into members	(memberId, memberPassword, memberCheckPassword, memberName, memberNickname, memberResident, memberAddress, memberTelNumber)
+		values(#{memberId},#{memberPassword},#{memberCheckPassword},#{memberName},#{memberNickname},#{memberResident},#{memberAddress},#{memberTelNumber})	
+	</insert>
+	
+	<select id="loginMember" resultType="int">
+		select count(*) from members where memberId=#{memberId} and memberPassword=#{memberPassword}
+	</select>
+	
+	<select id="selectMember" resultMap="membersResult">
+		SELECT * FROM members WHERE memberId=#{memberId}
+	</select>
+	
+	<update id="modifyMember">
+		update members set
+		memberPassword=#{memberPassword}, memberCheckPassword=#{memberCheckPassword}, memberNickname=#{memberNickname}, memberAddress=#{memberAddress}, memberTelNumber=#{memberTelNumber}
+		where memberId=#{memberId}
+	</update>
+	
+	<select id="unSignUpMember_check" resultType="int">
+		select count(*) from members where memberId=#{memberId} and memberPassword=#{memberPassword}
+	</select>
+	
+	<delete id="unSignUpMember">
+		delete from members where memberId=#{memberId}
+	</delete>
+</mapper>
