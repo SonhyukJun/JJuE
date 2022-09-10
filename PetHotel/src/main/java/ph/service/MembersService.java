@@ -18,6 +18,12 @@ public interface MembersService {
 	
 	MembersVO selectMember(String memberId) throws Exception;	
 	
+	void modifyMemberPassword(MembersVO membersVo) throws Exception;
+	
+	void modifyMemberNickname(MembersVO membersVo) throws Exception;
+	
+	void modifyMemberTelNumber(MembersVO membersVo) throws Exception;
+	
 	void modifyMember(MembersVO membersVo) throws Exception;
 	
 	int unSignUpMember_check(MembersVO membersVo) throws Exception;
@@ -25,6 +31,8 @@ public interface MembersService {
 	void unSignUpMember(String memberId) throws Exception;
 	
 	String memberNickname(String memberId) throws Exception;
+	
+	String memberTelNumber(String memberId) throws Exception;
 
 	
 	String memberRole() throws Exception;

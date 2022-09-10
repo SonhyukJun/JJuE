@@ -19,14 +19,15 @@
 				if(data == 0){
 					alert("사용할 수 있는 닉네임입니다.");
 					$('#nickname_check').html('V<br>');
-    	    	  	$('#nickname_check').attr('color', '#199894b3');  
+    	    	  	$('#nickname_check').attr('color', '#199894b3');
 				} else {
 					alert("중복된 닉네임이 존재합니다.");
+					$('#nickname_check').html('X<br>');
+    	    	  	$('#nickname_check').attr('color', '#f82a2aa3');  
 				}
 			}
 		})
-	}
-	
+	}	
 	$(function(){
     	$('#memberPassword').keyup(function(){
 	      	$('#password_check').html('');
@@ -110,8 +111,7 @@
 	String memberId = (String) session.getAttribute("SessionMemberId");
 	String memberNickname = (String) session.getAttribute("SessionMemberNickname");
 	System.out.println(memberId);
-	System.out.println(memberNickname);
-	
+	System.out.println(memberNickname);	
 %>
 <h1>개인 정보 수정</h1>
 <div class="container" style="width:400px">

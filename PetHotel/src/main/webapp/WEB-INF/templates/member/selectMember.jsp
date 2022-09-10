@@ -9,7 +9,7 @@
 <body>
 <% 
 	String memberId = (String) session.getAttribute("SessionMemberId");
-	System.out.print(memberId);	
+	System.out.print(memberId);
 %>
 <h1>개인 정보 조회</h1>
 아이디 : ${memberSelect.memberId}<br>
@@ -22,7 +22,7 @@
 등급 : ${memberSelect.memberGrade}<br>
 
 
-<button type="button" class="btn btn-primary" onclick="location.href='modifyMember.do'">개인 정보 수정</button>
+<button type="button" class="btn btn-primary" onclick="location.href='modifyMemberLogin.do'">개인 정보 수정</button>
 <button type="button" class="btn btn-primary" onclick="location.href='unSignUpMember.do'">회원 탈퇴 </button>
 
 </body>

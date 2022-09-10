@@ -57,6 +57,21 @@ public class MembersServiceImpl implements MembersService {
 	}
 	
 	@Override
+	public void modifyMemberPassword(MembersVO membersVo) throws Exception {
+		dao.modifyMemberPassword(membersVo);
+	}
+	
+	@Override
+	public void modifyMemberNickname(MembersVO membersVo) throws Exception {
+		dao.modifyMemberNickname(membersVo); 	
+	}
+	
+	@Override
+	public void modifyMemberTelNumber(MembersVO membersVo) throws Exception {
+		dao.modifyMemberTelNumber(membersVo);
+	}
+	
+	@Override
 	public void modifyMember(MembersVO membersVo) throws Exception {
 		dao.modifyMember(membersVo);		
 	}
@@ -76,6 +91,11 @@ public class MembersServiceImpl implements MembersService {
 	public String memberNickname(String memberId) throws Exception {
 		return dao.memberNickname(memberId);
 	}
+	
+	@Override
+	public String memberTelNumber(String memberId) throws Exception {
+		return dao.memberTelNumber(memberId);
+	}
 
 	@Override
 	public String memberRole() throws Exception {
@@ -88,7 +108,5 @@ public class MembersServiceImpl implements MembersService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 	
 }

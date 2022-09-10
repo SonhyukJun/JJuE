@@ -58,7 +58,7 @@
 	        	$('#password_check').attr('color', '#f82a2aa3');	
 	        } else{
 	          	$('#password_check').html('비밀번호 일치함<br>');
-    	      	$('#password_check').attr('color', '#199894b3');
+    	      	$('#password_check').attr('color', '#199894b3');    	      
 	        }
     	});
 	});
@@ -84,7 +84,8 @@
 		})
 	}	
 	
-	function signUpMember() {		
+	function signUpMember() {
+		
 		var id = $('#memberId').val();
 		var password = $('#memberPassword').val();
 		var checkpassword = $('#memberCheckPassword').val();
@@ -108,7 +109,9 @@
 		} else if(address == "") {
 			alert("주소를 입력해 주세요")
 		} else if(telnumber == ""){
-			alert("전화번호를 입력해 주세요")
+			alert("전화번호를 입력해 주세요.")
+		} else if(password != checkpassword) {
+			alert("비밀번호가 일치하지 않습니다.")
 		} else {
 		$.ajax({
 			url: 'signUpMember.do',

@@ -21,8 +21,6 @@ public class MembersController {
 	@Resource(name = "memberService")
 	private MembersService service;
 
-	//test
-	
 	@RequestMapping(value = "/signUp.do", method = RequestMethod.GET)
 	public String signUp() {
 		return "member/signUp";
@@ -69,7 +67,7 @@ public class MembersController {
 		return data;
 	}
 
-	@RequestMapping(value = "/login.do")
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginForm() {
 		return "login";
 	}
@@ -83,28 +81,32 @@ public class MembersController {
 		membersVo.setMemberPassword(memberPassword);
 		int result = service.loginMember(membersVo);
 		if (result == 1) {
-			System.out.println("로그인 성공");
-			String nickname = (String) service.memberNickname(memberId);
+			String nickname = service.memberNickname(memberId);
+			String telNumber = service.memberTelNumber(memberId);
+			MembersVO memberSession = service.selectMember(memberId);			
 			session.setAttribute("SessionMemberId", membersVo.getMemberId());
 			session.setAttribute("SessionMemberNickname", nickname);
+			session.setAttribute("SessionMemberTelNumber", telNumber);
+			session.setAttribute("SessionMember", memberSession);			
+			
 		} else {
 			System.out.println("로그인 실패");
 		}
 		return result;
 	}
 
-	@RequestMapping(value = "/main.do")
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String mainForm() {
 		return "main";
 	}
 
-	@RequestMapping(value = "/logout.do")
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("SessionMemberId");
 		return "main";
 	}
 
-	@RequestMapping(value = "/selectMember.do")
+	@RequestMapping(value = "/selectMember.do", method = RequestMethod.GET)
 	public String selectMember(HttpSession session, HttpServletRequest request, Model model) throws Exception {
 		String memberId = "";
 		session = request.getSession();
@@ -113,15 +115,124 @@ public class MembersController {
 		return "member/selectMember";
 	}
 
+	@RequestMapping(value = "/modifyMemberLogin.do", method = RequestMethod.GET)
+	public String modifyMemberLogin() {
+		return "member/modifyMemberLogin";
+	}
+
 	@RequestMapping(value = "/modifyMember.do", method = RequestMethod.GET)
 	public String modifyMemberForm(HttpSession session, HttpServletRequest request, Model model) throws Exception {
 		String memberId = "";
-		String memberNickname = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		memberNickname = (String) session.getAttribute("SessionMemberNickname");
 		model.addAttribute("memberSelect", service.selectMember(memberId));
-		return "member/modifyMember";
+		return "member/modifyMember/modifyMember";
+	}
+
+	@RequestMapping(value = "/modifyMemberPassword.do", method = RequestMethod.GET)
+	public String modifyMemberPassword(HttpSession session, HttpServletRequest request) throws Exception {
+		String memberId = "";
+		session = request.getSession();
+		memberId = (String) session.getAttribute("SessionMemberId");
+		MembersVO memberSession = (MembersVO) service.selectMember(memberId);
+		System.out.println(memberSession);
+		session.setAttribute("SessionMember", memberSession);
+		return "member/modifyMember/modifyMemberPassword";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/modifyMemberPassword.do", method = RequestMethod.POST)
+	public String modifyMemberPassword(@RequestParam(name = "memberId") String memberId,
+			@RequestParam(name = "memberPassword") String memberPassword,
+			@RequestParam(name = "memberCheckPassword") String memberCheckPassword, MembersVO membersVo)
+			throws Exception {
+		membersVo.setMemberId(memberId);
+		membersVo.setMemberPassword(memberPassword);
+		membersVo.setMemberCheckPassword(memberCheckPassword);
+		service.modifyMemberPassword(membersVo);
+		String data = "ok";
+		System.out.println(data);
+		return data;
+	}
+
+	@RequestMapping(value = "/modifyMemberNickname.do", method = RequestMethod.GET)
+	public String modifyMemberNickname(HttpSession session, HttpServletRequest request) throws Exception {
+		String memberId = "";
+		session = request.getSession();
+		memberId = (String) session.getAttribute("SessionMemberId");
+		MembersVO memberSession = (MembersVO) service.selectMember(memberId);
+		System.out.println(memberSession);
+		session.setAttribute("SessionMember", memberSession);
+		return "member/modifyMember/modifyMemberNickname";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/modifyMemberNickname_check.do", method = RequestMethod.POST)
+	public String modifyMemberNickname_check(@RequestParam(name = "memberNickname") String memberNickname)
+			throws Exception {
+		String data = "";
+		int result = service.memberNickname_check(memberNickname);
+		if (result == 1) {
+			data = "no";
+		} else {
+			data = "ok";
+		}
+		return data;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/modifyMemberNickname.do", method = RequestMethod.POST)
+	public String modifyMemberNickname(@RequestParam(name = "memberId") String memberId,
+			@RequestParam(name = "memberNickname") String memberNickname, MembersVO membersVo, HttpSession session,
+			HttpServletRequest request) throws Exception {
+		String data = "";
+		String memberNick = "";
+		session = request.getSession();
+		memberId = (String) session.getAttribute("SessionMemberId");
+		memberNick = (String) session.getAttribute("SessionMemberNickname");
+		int result = service.memberNickname_check(memberNickname);
+		if (memberNickname.equals(memberNick) && result == 1 || result == 0) {
+			membersVo.setMemberId(memberId);
+			membersVo.setMemberNickname(memberNickname);
+			service.modifyMemberNickname(membersVo);
+			data = "ok";
+		} else if (memberNickname != memberNick && result == 1) {
+			data = "no";
+		}
+		return data;
+	}
+	
+	@RequestMapping(value = "/modifyMemberTelNumber.do", method = RequestMethod.GET)
+	public String modifyMemberTelNumber(HttpSession session, HttpServletRequest request) throws Exception {
+		String memberId = "";
+		session = request.getSession();
+		memberId = (String) session.getAttribute("SessionMemberId");
+		MembersVO memberSession = (MembersVO) service.selectMember(memberId);
+		System.out.println(memberSession);
+		session.setAttribute("SessionMember", memberSession);			
+		return "member/modifyMember/modifyMemberTelNumber";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/modifyMemberTelNumber.do", method = RequestMethod.POST)
+	public String modifyMemberTelNumber(@RequestParam(name = "memberId") String memberId,
+			@RequestParam(name = "memberTelNumber") String memberTelNumber, MembersVO membersVo, HttpSession session,
+			HttpServletRequest request) throws Exception {
+		String data = "";
+		String memberTelNum = "";
+		session = request.getSession();
+		memberId = (String) session.getAttribute("SessionMemberId");
+		memberTelNum = (String) session.getAttribute("SessionMemberTelNumber");
+		int result = service.memberTelNumber_check(memberTelNumber);
+		if (memberTelNumber.equals(memberTelNum) && result == 1 || result == 0) {
+			membersVo.setMemberId(memberId);
+			membersVo.setMemberNickname(memberTelNumber);
+			service.modifyMemberTelNumber(membersVo);
+			data = "ok";
+		} else if (memberTelNumber != memberTelNum && result == 1) {
+			data = "no";
+		}
+		return data;
 	}
 
 	@RequestMapping(value = "/unSignUpMember.do", method = RequestMethod.GET)
@@ -157,24 +268,6 @@ public class MembersController {
 		session.setAttribute("SessionMemberNickname", nickname);
 		System.out.println(data);
 		return data;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/memberNickname_check1.do", method = RequestMethod.POST)
-	public int memberNickname_check1(MembersVO membersVo, HttpSession session, HttpServletRequest request,
-			@RequestParam(name = "memberNickname") String memberNickname) throws Exception {
-		int count = 0;
-		int result = service.memberNickname_check(memberNickname);
-		String memberNick = "";
-		session = request.getSession();
-		memberNick = (String) session.getAttribute("SessionMemberNickname");
-		if (memberNick.equals(memberNickname) || result == 0) {
-			count = 0;
-		} else if (memberNick != memberNickname && result == 1) {
-			count = 1;
-		}
-
-		return count;
 	}
 
 	@ResponseBody

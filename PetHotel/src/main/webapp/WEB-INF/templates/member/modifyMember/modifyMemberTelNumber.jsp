@@ -1,0 +1,124 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	function memberTelNumber_check_self() {
+		var memberTel = $('#memberTelNumber').val();
+		var memberTelWrite = $('#memberFirstNumber').val() + $('#memberMiddleNumber').val() + $('#memberLastNumber').val();
+		
+		if(memberTel != memberTelWrite){
+			alert("전화번호를 확인해주세요")
+			$('#newMemberFirstNumber').attr("disabled", "disabled");
+			$('#newMemberMiddleNumber').attr("disabled", "disabled");
+			$('#newMemberLastNumber').attr("disabled", "disabled");
+		} else {
+			alert("전화번호 인증 성공")
+			$('#newMemberFirstNumber').removeAttr("disabled");
+			$('#newMemberMiddleNumber').removeAttr("disabled");
+			$('#newMemberLastNumber').removeAttr("disabled");
+		}
+	}
+	
+	function memberTelNumber_check() {
+		var telnumber = $('#newMemberFirstNumber').val() + $('#newMemberMiddleNumber').val() + $('#newMemberLastNumber').val();
+		$.ajax({
+			url: 'memberTelNumber_check.do',
+			type: 'POST',
+			data: {memberTelNumber:telnumber},
+			datatype: 'JSON',
+			success: function (data) {
+				if(data == 0){
+					alert("사용할 수 있는 전화번호 입니다.");
+					$('#telNumber_check').html('V<br>');
+	    	      	$('#telNumber_check').attr('color', '#199894b3');  
+				} else {
+					alert("중복된 전화번호 입니다.");
+				}
+			}
+		})
+	}
+	
+	function modifyMemberTelNumber() {
+		var id = $('#memberId').val();
+		var memberTelNum = $('#newMemberFirstNumber').val() + $('#newMemberMiddleNumber').val() + $('#newMemberLastNumber').val();
+		if($('#newMemberMiddleNumber').val()== "" || $('#newMemberLastNumber').val() == ""){
+			alert("전화번호에 빈칸이 존재합니다.\n확인해주세요.")
+		} else if ($('#newMemberMiddleNumber').val().length < 3 || $('#newMemberLastNumber').val().length < 3){
+			alert("전화번호 형식이 맞지않습니다.")
+		} else {
+			$.ajax({
+				url: 'modifyMemberTelNumber.do',
+				type: 'POST',
+				data: {
+					memberId: id,
+					memberTelNumber: memberTelNum
+				},
+				datatype: 'JSON',
+				success: function(data) {
+					if(data == "ok"){
+						alert("수정성공")
+						location="selectMember.do";
+					}
+				}
+				
+			})			
+		}
+	}
+</script>
+<title>전화번호 수정 페이지</title>
+</head>
+<body>
+<h1>전화번호 수정 페이지</h1>
+	<input type="hidden" id="memberId" name="memberId" value="${SessionMember.getMemberId()}"/>
+	<input type="hidden" id="memberTelNumber" name="memberTelNumber" value="${SessionMember.getMemberTelNumber()}"/>
+ 	<div class="form-group">
+ 		<c:set var="telnumber" value="${SessionMember.getMemberTelNumber()}"/>
+       	<c:set var="FirstNumber" value="${fn:substring(telnumber,0,3)}"/>
+       	<c:set var="MiddleNumber" value="${fn:substring(telnumber,3,4)}"/>
+       	<c:set var="LastNumber" value="${fn:substring(telnumber,7,8)}"/>
+       	<label for="nowMemberTelNumber">현재 전화번호</label>
+        <input type="text" readonly="readonly" id="nowMemberTelNumber" name="nowMemberTelNumber" value="${FirstNumber} - ${MiddleNumber}*** - ${LastNumber}***"/>       
+	</div>
+	
+	<div class="form-group"> 		
+       	<label for="nowMemberTelNumber">전화번호 인증</label>
+         <label for="memberFirstNumber">전화번호</label>
+            <select id="memberFirstNumber" name="memberFirstNumber">
+            	<option value="010">010</option>
+            	<option value="011">011</option>
+            	<option value="016">016</option>
+            	<option value="017">017</option>
+            	<option value="019">019</option>
+            </select>
+            -
+            <input type="text" style="width:30px" maxlength="4" id="memberMiddleNumber" name="memberMiddleNumber" placeholder="0000" required>
+            -
+            <input type="text" style="width:30px" maxlength="4" id="memberLastNumber" name="memberLastNumber" placeholder="0000" required>
+            <input type="button" onclick="memberTelNumber_check_self()" value="전화번호 인증"/>
+	</div>
+	
+	<div class="form-group">
+		<label for="nowMemberTelNumber">변경할 전화번호</label>
+		<select id="newMemberFirstNumber" name="newMemberFirstNumber" disabled="disabled">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="016">016</option>
+            <option value="017">017</option>
+            <option value="019">019</option>
+        </select>
+            -
+        <input type="text" style="width:30px" disabled="disabled" maxlength="4" id="newMemberMiddleNumber" name="memberMiddleNumber" placeholder="0000" required>
+            -
+        <input type="text" style="width:30px" disabled="disabled" maxlength="4" id="newMemberLastNumber" name="memberLastNumber" placeholder="0000" required>
+        <input type="button" onclick="memberTelNumber_check()" value="전화번호 중복 체크"/>
+        <font id="telNumber_check" size="2"></font>      
+	</div>
+	<input type="button" id="modifyMemberTelNumber" onclick="modifyMemberTelNumber()" value="변경하기"/>
+</body>
+</html>
