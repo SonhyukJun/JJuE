@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="ph.service.MembersVO"%>
+<%@ page import="ph.members.service.MembersVO"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -58,7 +58,7 @@
 				success: function (data) {
 					if(data == "ok"){
 						alert("닉네임 변경 성공");
-						opener.parent.location="http://localhost:8080/PetHotel/selectMember.do";
+						opener.parent.location="http://localhost:8080/PetHotel/modifyMember.do";
 						self.close();
 					} else if(data == "no"){
 						alert("중복된 닉네임이 존재합니다.\n다시 확인해주세요");						  

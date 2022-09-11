@@ -1,4 +1,4 @@
-package ph.service;
+package ph.members.service;
 
 import java.util.List;
 

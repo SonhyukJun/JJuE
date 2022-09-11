@@ -3,6 +3,6 @@
 
 <configuration>  
     <typeAliases>
-		<typeAlias alias="members" type="ph.service.MembersVO"/>
+		<typeAlias alias="members" type="ph.members.service.MembersVO"/>
     </typeAliases>
-</configuration>
+</configuration> 

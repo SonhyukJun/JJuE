@@ -1,4 +1,4 @@
-package ph.controller;
+package ph.members.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ph.service.MembersService;
-import ph.service.MembersVO;
+import ph.members.service.MembersService;
+import ph.members.service.MembersVO;
 
 @Controller
 public class MembersController {

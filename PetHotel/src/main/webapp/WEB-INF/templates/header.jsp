@@ -1,7 +1,7 @@
 <%@page import="java.awt.print.Printable"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="ph.service.MembersVO"%>
+<%@ page import="ph.members.service.MembersVO"%>
 <!DOCTYPE html>
 <html>
 <body>

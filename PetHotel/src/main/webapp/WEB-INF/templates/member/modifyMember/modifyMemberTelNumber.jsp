@@ -79,7 +79,7 @@
 				success: function(data) {
 					if(data == "ok"){
 						alert("수정성공")
-						opener.parent.location="http://localhost:8080/PetHotel/selectMember.do";
+						opener.parent.location="http://localhost:8080/PetHotel/modifyMember.do";
 						self.close();
 					} else if(data == "no") {
 						alert("전화번호 중복체크를 확인해 주세요 .")
@@ -134,9 +134,9 @@
             <option value="019">019</option>
         </select>
             -
-        <input type="text" style="width:30px" disabled="disabled" maxlength="4" id="newMemberMiddleNumber" name="memberMiddleNumber" placeholder="0000" required>
+        <input type="text" style="width:40px" disabled="disabled" maxlength="4" id="newMemberMiddleNumber" name="memberMiddleNumber" placeholder="0000" required>
             -
-        <input type="text" style="width:30px" disabled="disabled" maxlength="4" id="newMemberLastNumber" name="memberLastNumber" placeholder="0000" required>
+        <input type="text" style="width:40px" disabled="disabled" maxlength="4" id="newMemberLastNumber" name="memberLastNumber" placeholder="0000" required>
         <input type="button" id="memberTelNumber_check" disabled="disabled" onclick="memberTelNumber_check()" value="전화번호 중복 체크"/>
         <font id="telNumber_check" size="2"></font>      
 	</div>
