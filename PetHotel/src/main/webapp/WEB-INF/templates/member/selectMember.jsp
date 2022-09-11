@@ -2,15 +2,18 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
 <title>개인 정보 조회</title>
 </head>
 <body>
-<% 
+<jsp:include page="../header.jsp"></jsp:include>
+<br><br><br>
+<%-- <% 
 	String memberId = (String) session.getAttribute("SessionMemberId");
 	System.out.print(memberId);
-%>
+%> --%>
 <h1>개인 정보 조회</h1>
 아이디 : ${memberSelect.memberId}<br>
 비밀번호 : ${memberSelect.memberPassword}<br>

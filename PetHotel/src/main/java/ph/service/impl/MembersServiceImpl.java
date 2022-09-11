@@ -70,11 +70,6 @@ public class MembersServiceImpl implements MembersService {
 	public void modifyMemberTelNumber(MembersVO membersVo) throws Exception {
 		dao.modifyMemberTelNumber(membersVo);
 	}
-	
-	@Override
-	public void modifyMember(MembersVO membersVo) throws Exception {
-		dao.modifyMember(membersVo);		
-	}
 
 	@Override
 	public int unSignUpMember_check(MembersVO membersVo) throws Exception {
@@ -98,15 +93,25 @@ public class MembersServiceImpl implements MembersService {
 	}
 
 	@Override
-	public String memberRole() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public String findMemberId(MembersVO membersVo) throws Exception {
+		return dao.findMemberId(membersVo);
 	}
 
+	@Override
+	public void findMemberPassword1(MembersVO membersVo) throws Exception {
+		dao.findMemberPassword1(membersVo);		
+	}
+
+	@Override
+	public int findMemberPassword2(MembersVO membersVo) throws Exception {
+		int result = dao.findMemberPassword2(membersVo);
+		return result;
+	}	
+	
 	@Override
 	public List<MembersVO> selectMembersList() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

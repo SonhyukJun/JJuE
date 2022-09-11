@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,8 +69,15 @@ public class MembersController {
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String loginForm() {
-		return "login";
+	public String loginForm(HttpSession session, HttpServletRequest request) {
+		String memberId = "";
+		session = request.getSession();
+		memberId = (String) session.getAttribute("SessionMemberId");
+		if (memberId != null) {		
+			return "main";
+		} else {
+			return "login";
+		}
 	}
 
 	@ResponseBody
@@ -83,12 +91,12 @@ public class MembersController {
 		if (result == 1) {
 			String nickname = service.memberNickname(memberId);
 			String telNumber = service.memberTelNumber(memberId);
-			MembersVO memberSession = service.selectMember(memberId);			
+			MembersVO memberSession = service.selectMember(memberId);
 			session.setAttribute("SessionMemberId", membersVo.getMemberId());
 			session.setAttribute("SessionMemberNickname", nickname);
 			session.setAttribute("SessionMemberTelNumber", telNumber);
-			session.setAttribute("SessionMember", memberSession);			
-			
+			session.setAttribute("SessionMember", memberSession);
+
 		} else {
 			System.out.println("로그인 실패");
 		}
@@ -111,13 +119,24 @@ public class MembersController {
 		String memberId = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		model.addAttribute("memberSelect", service.selectMember(memberId));
-		return "member/selectMember";
+		if (memberId != null) {
+			model.addAttribute("memberSelect", service.selectMember(memberId));
+			return "member/selectMember";
+		} else {
+			return "loginCheck";
+		}
 	}
 
 	@RequestMapping(value = "/modifyMemberLogin.do", method = RequestMethod.GET)
-	public String modifyMemberLogin() {
-		return "member/modifyMemberLogin";
+	public String modifyMemberLogin(HttpSession session, HttpServletRequest request) throws Exception {
+		String memberId = "";
+		session = request.getSession();
+		memberId = (String) session.getAttribute("SessionMemberId");
+		if (memberId != null) {
+			return "member/modifyMemberLogin";
+		} else {
+			return "loginCheck";
+		}
 	}
 
 	@RequestMapping(value = "/modifyMember.do", method = RequestMethod.GET)
@@ -125,8 +144,12 @@ public class MembersController {
 		String memberId = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		model.addAttribute("memberSelect", service.selectMember(memberId));
-		return "member/modifyMember/modifyMember";
+		if (memberId != null) {
+			model.addAttribute("memberSelect", service.selectMember(memberId));
+			return "member/modifyMember/modifyMember";
+		} else {
+			return "loginCheck";
+		}
 	}
 
 	@RequestMapping(value = "/modifyMemberPassword.do", method = RequestMethod.GET)
@@ -134,10 +157,13 @@ public class MembersController {
 		String memberId = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		MembersVO memberSession = (MembersVO) service.selectMember(memberId);
-		System.out.println(memberSession);
-		session.setAttribute("SessionMember", memberSession);
-		return "member/modifyMember/modifyMemberPassword";
+		if (memberId != null) {
+			MembersVO memberSession = (MembersVO) service.selectMember(memberId);
+			session.setAttribute("SessionMember", memberSession);
+			return "member/modifyMember/modifyMemberPassword";
+		} else {
+			return "loginCheck";
+		}
 	}
 
 	@ResponseBody
@@ -160,10 +186,13 @@ public class MembersController {
 		String memberId = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		MembersVO memberSession = (MembersVO) service.selectMember(memberId);
-		System.out.println(memberSession);
-		session.setAttribute("SessionMember", memberSession);
-		return "member/modifyMember/modifyMemberNickname";
+		if (memberId != null) {
+			MembersVO memberSession = (MembersVO) service.selectMember(memberId);
+			session.setAttribute("SessionMember", memberSession);
+			return "member/modifyMember/modifyMemberNickname";
+		} else {
+			return "loginCheck";
+		}
 	}
 
 	@ResponseBody
@@ -201,18 +230,22 @@ public class MembersController {
 		}
 		return data;
 	}
-	
+
 	@RequestMapping(value = "/modifyMemberTelNumber.do", method = RequestMethod.GET)
 	public String modifyMemberTelNumber(HttpSession session, HttpServletRequest request) throws Exception {
 		String memberId = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		MembersVO memberSession = (MembersVO) service.selectMember(memberId);
-		System.out.println(memberSession);
-		session.setAttribute("SessionMember", memberSession);			
-		return "member/modifyMember/modifyMemberTelNumber";
+		if (memberId != null) {
+			MembersVO memberSession = (MembersVO) service.selectMember(memberId);
+			System.out.println(memberSession);
+			session.setAttribute("SessionMember", memberSession);
+			return "member/modifyMember/modifyMemberTelNumber";
+		} else {
+			return "loginCheck";
+		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/modifyMemberTelNumber.do", method = RequestMethod.POST)
 	public String modifyMemberTelNumber(@RequestParam(name = "memberId") String memberId,
@@ -236,38 +269,15 @@ public class MembersController {
 	}
 
 	@RequestMapping(value = "/unSignUpMember.do", method = RequestMethod.GET)
-	public String unSignUpMemberForm() {
-		return "member/unSignUpMember";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/modifyMember.do", method = RequestMethod.POST)
-	public String updateMember(@ModelAttribute("memberSelect") MembersVO membersVo, HttpSession session,
-			HttpServletRequest request) throws Exception {
-		System.out.println(membersVo.toString());
-		String data = "";
+	public String unSignUpMemberForm(HttpSession session, HttpServletRequest request) {
 		String memberId = "";
-		String memberNickname = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		memberNickname = (String) session.getAttribute("SessionMemberNickname");
-
-		int result = service.memberNickname_check(memberNickname);
-		if (memberId != null && memberNickname.equals(membersVo.getMemberNickname())) {
-			membersVo.getMemberPassword();
-			membersVo.getMemberCheckPassword();
-			membersVo.getMemberNickname();
-			membersVo.getMemberAddress();
-			membersVo.getMemberTelNumber();
-			service.modifyMember(membersVo);
-			data = "ok";
-		} else if (memberNickname != membersVo.getMemberNickname() && result == 1) {
-			data = "nick";
+		if (memberId != null) {
+			return "member/unSignUpMember";
+		} else {
+			return "loginCheck";
 		}
-		String nickname = (String) service.memberNickname(memberId);
-		session.setAttribute("SessionMemberNickname", nickname);
-		System.out.println(data);
-		return data;
 	}
 
 	@ResponseBody
@@ -284,5 +294,87 @@ public class MembersController {
 		}
 		session.removeAttribute("SessionMemberId");
 		return result;
+	}
+
+	@RequestMapping(value = "/findMemberId.do", method = RequestMethod.GET)
+	public String findMemberIdForm(HttpSession session) {
+		session.removeAttribute("findById");
+		return "member/findMemberId";
+	}
+	
+	@RequestMapping(value = "/modifylogin.do", method = RequestMethod.GET)
+	public String loginForm(HttpSession session) {
+		session.removeAttribute("findById");
+		return "login";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/findMemberId.do", method = RequestMethod.POST)
+	public String findMemberId(@RequestParam(name = "memberName") String memberName,
+			@RequestParam(name = "memberResident") String memberResident,
+			@RequestParam(name = "memberTelNumber") String memberTelNumber, MembersVO membersVo, HttpSession session)
+			throws Exception {
+		String data = "";
+		membersVo.setMemberName(memberName);
+		membersVo.setMemberResident(memberResident);
+		membersVo.setMemberTelNumber(memberTelNumber);
+		String findId = service.findMemberId(membersVo);
+		if (findId == null) {
+			data = "no";
+		} else {
+			session.setAttribute("findById", findId);
+			data = "ok";
+		}
+		return data;
+	}
+
+	@RequestMapping(value = "/findMember.do", method = RequestMethod.GET)
+	public String findMemberForm() {
+		return "member/findMember";
+	}
+
+	@RequestMapping(value = "/findMemberPassword.do", method = RequestMethod.GET)
+	public String findMemberPasswordForm() {
+		return "member/findMemberPassword";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "findMemberPassword1.do", method = RequestMethod.POST)
+	public String findMemberPassword1(@RequestParam(name = "memberId") String memberId,
+			@RequestParam(name = "memberPassword") String memberPassword,
+			@RequestParam(name = "memberCheckPassword") String memberCheckPassword, MembersVO membersVo)
+			throws Exception {
+		String data = "";
+		if (memberId != null) {
+			membersVo.setMemberId(memberId);
+			membersVo.setMemberPassword(memberPassword);
+			membersVo.setMemberCheckPassword(memberCheckPassword);
+			service.findMemberPassword1(membersVo);
+			data = "ok";
+		} else {
+			data = "no";
+		}
+		return data;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "findMemberPassword2.do", method = RequestMethod.POST)
+	public String findMemberPassword2(@RequestParam(name = "memberId") String memberId,
+			@RequestParam(name = "memberTelNumber") String memberTelNumber,
+			@RequestParam(name = "memberPassword") String memberPassword,
+			@RequestParam(name = "memberCheckPassword") String memberCheckPassword, MembersVO membersVo)
+			throws Exception {
+		String data = "";
+		membersVo.setMemberId(memberId);
+		membersVo.setMemberTelNumber(memberTelNumber);
+		int result = service.findMemberPassword2(membersVo);
+		if (result == 1) {
+			membersVo.setMemberPassword(memberPassword);
+			membersVo.setMemberCheckPassword(memberCheckPassword);
+			service.findMemberPassword1(membersVo);
+			data = "ok";
+		} else {
+			data = "no";
+		}
+		return data;
 	}
 }

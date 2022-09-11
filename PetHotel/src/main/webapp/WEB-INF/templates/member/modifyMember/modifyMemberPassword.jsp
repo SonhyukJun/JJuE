@@ -4,10 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">	
 	$(function(){
 		$('#newPassword').keyup(function(){
     	  	$('#memberCheckPassword').html('');
@@ -46,7 +47,8 @@
 				success: function(data) {
 					if(data == "ok"){
 						alert("수정성공")
-						location="selectMember.do";
+						opener.parent.location="http://localhost:8080/PetHotel/selectMember.do";
+						self.close();
 					}
 				}
 				
@@ -57,12 +59,14 @@
 <title>비밀번호 변경</title>
 </head>
 <body>
-<% 
+<jsp:include page="../../header.jsp"></jsp:include>
+<br><br><br>
+<%-- <% 
 	String memberId = (String) session.getAttribute("SessionMemberId");
 	System.out.println(memberId);
 	
 	//MembersVO memberSession = (MembersVO) session.getAttribute("SessionMember");	
-%>		
+%>		 --%>
 		<h1>비밀번호 변경 페이지</h1>
 		<input type="hidden" id="memberId" name="memberId" value="${SessionMember.getMemberId()}"/>
 		<input type="hidden" id="memberPassword" name="memberPassword" value="${SessionMember.getMemberPassword()}"/>
@@ -72,13 +76,13 @@
         </div>
         
         <div class="form-group">
-            <label for="newPassword">변경할 비밀번호</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="비밀번호">
+            <label for="newPassword">새 비밀번호</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="새 비밀번호">
         </div>
         
         <div class="form-group">
-            <label for="memberCheckPassword">비밀번호 확인</label>
-            <input type="password" id="memberCheckPassword" name="memberCheckPassword" placeholder="비밀번호 확인">
+            <label for="memberCheckPassword">새 비밀번호 확인</label>
+            <input type="password" id="memberCheckPassword" name="memberCheckPassword" placeholder="새 비밀번호 확인">
             <br>
             <font id="password_check" size="2"></font>
         </div>

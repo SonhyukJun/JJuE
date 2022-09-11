@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -17,31 +19,45 @@
 			$('#newMemberFirstNumber').attr("disabled", "disabled");
 			$('#newMemberMiddleNumber').attr("disabled", "disabled");
 			$('#newMemberLastNumber').attr("disabled", "disabled");
+			$('#memberTelNumber_check').attr("disabled", "disabled");
 		} else {
 			alert("전화번호 인증 성공")
 			$('#newMemberFirstNumber').removeAttr("disabled");
 			$('#newMemberMiddleNumber').removeAttr("disabled");
 			$('#newMemberLastNumber').removeAttr("disabled");
+			$('#memberTelNumber_check').removeAttr("disabled");
+			
+	
 		}
 	}
 	
 	function memberTelNumber_check() {
-		var telnumber = $('#newMemberFirstNumber').val() + $('#newMemberMiddleNumber').val() + $('#newMemberLastNumber').val();
-		$.ajax({
-			url: 'memberTelNumber_check.do',
-			type: 'POST',
-			data: {memberTelNumber:telnumber},
-			datatype: 'JSON',
-			success: function (data) {
-				if(data == 0){
-					alert("사용할 수 있는 전화번호 입니다.");
-					$('#telNumber_check').html('V<br>');
-	    	      	$('#telNumber_check').attr('color', '#199894b3');  
-				} else {
-					alert("중복된 전화번호 입니다.");
+		var memberTel = $('#memberTelNumber').val();
+		var memberTelNum = $('#newMemberFirstNumber').val() + $('#newMemberMiddleNumber').val() + $('#newMemberLastNumber').val();
+		if(memberTel == memberTelNum) {
+			alert("사용가능한 전화번호 입니다.")
+		} else if($('#newMemberMiddleNumber').val()== "" || $('#newMemberLastNumber').val() == ""){
+			alert("전화번호에 빈칸이 존재합니다.\n확인해주세요.")
+		} else if ($('#newMemberMiddleNumber').val().length < 4 || $('#newMemberLastNumber').val().length < 4){
+			alert("전화번호 형식이 맞지않습니다.")
+		} else {
+			$.ajax({
+				url: 'memberTelNumber_check.do',
+				type: 'POST',
+				data: {memberTelNumber:memberTelNum},
+				datatype: 'JSON',
+				success: function (data) {
+					if(data == 0){
+						alert("사용할 수 있는 전화번호 입니다.");
+						$('#telNumber_check').html('V<br>');
+		    	      	$('#telNumber_check').attr('color', '#199894b3');  
+					} else {
+						alert("중복된 전화번호 입니다.");
+					}
 				}
-			}
-		})
+			})
+		}
+		
 	}
 	
 	function modifyMemberTelNumber() {
@@ -49,7 +65,7 @@
 		var memberTelNum = $('#newMemberFirstNumber').val() + $('#newMemberMiddleNumber').val() + $('#newMemberLastNumber').val();
 		if($('#newMemberMiddleNumber').val()== "" || $('#newMemberLastNumber').val() == ""){
 			alert("전화번호에 빈칸이 존재합니다.\n확인해주세요.")
-		} else if ($('#newMemberMiddleNumber').val().length < 3 || $('#newMemberLastNumber').val().length < 3){
+		} else if ($('#newMemberMiddleNumber').val().length < 4 || $('#newMemberLastNumber').val().length < 4){
 			alert("전화번호 형식이 맞지않습니다.")
 		} else {
 			$.ajax({
@@ -63,7 +79,10 @@
 				success: function(data) {
 					if(data == "ok"){
 						alert("수정성공")
-						location="selectMember.do";
+						opener.parent.location="http://localhost:8080/PetHotel/selectMember.do";
+						self.close();
+					} else if(data == "no") {
+						alert("전화번호 중복체크를 확인해 주세요 .")
 					}
 				}
 				
@@ -74,6 +93,8 @@
 <title>전화번호 수정 페이지</title>
 </head>
 <body>
+<jsp:include page="../../header.jsp"></jsp:include>
+<br><br><br>
 <h1>전화번호 수정 페이지</h1>
 	<input type="hidden" id="memberId" name="memberId" value="${SessionMember.getMemberId()}"/>
 	<input type="hidden" id="memberTelNumber" name="memberTelNumber" value="${SessionMember.getMemberTelNumber()}"/>
@@ -97,9 +118,9 @@
             	<option value="019">019</option>
             </select>
             -
-            <input type="text" style="width:30px" maxlength="4" id="memberMiddleNumber" name="memberMiddleNumber" placeholder="0000" required>
+            <input type="text" style="width:40px" maxlength="4" id="memberMiddleNumber" name="memberMiddleNumber" placeholder="0000" required>
             -
-            <input type="text" style="width:30px" maxlength="4" id="memberLastNumber" name="memberLastNumber" placeholder="0000" required>
+            <input type="text" style="width:40px" maxlength="4" id="memberLastNumber" name="memberLastNumber" placeholder="0000" required>
             <input type="button" onclick="memberTelNumber_check_self()" value="전화번호 인증"/>
 	</div>
 	
@@ -116,7 +137,7 @@
         <input type="text" style="width:30px" disabled="disabled" maxlength="4" id="newMemberMiddleNumber" name="memberMiddleNumber" placeholder="0000" required>
             -
         <input type="text" style="width:30px" disabled="disabled" maxlength="4" id="newMemberLastNumber" name="memberLastNumber" placeholder="0000" required>
-        <input type="button" onclick="memberTelNumber_check()" value="전화번호 중복 체크"/>
+        <input type="button" id="memberTelNumber_check" disabled="disabled" onclick="memberTelNumber_check()" value="전화번호 중복 체크"/>
         <font id="telNumber_check" size="2"></font>      
 	</div>
 	<input type="button" id="modifyMemberTelNumber" onclick="modifyMemberTelNumber()" value="변경하기"/>

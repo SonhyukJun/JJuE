@@ -38,7 +38,6 @@
 </head>
 <body>
 <h1>로그인</h1> 
-    <form>
         <div>
             <label for="memberId">아이디</label>
             <input type="text" id="memberId" name="memberId" placeholder="아이디 입력해주세요" >
@@ -50,7 +49,6 @@
         <input type="button" onclick="loginMember()" value="로그인"/>
         <button type="button" onclick="location.href='signUp.do'">회원 가입</button><br><br>
         
-        <a href="">아이디 찾기</a> / <a href="">비밀번호 찾기</a>        
-    </form>
+        <a href="findMemberId.do">아이디 찾기</a> / <a href="findMemberPassword.do">비밀번호 찾기</a>        
 </body>
 </html>

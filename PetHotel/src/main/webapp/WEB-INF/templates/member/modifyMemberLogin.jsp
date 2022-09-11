@@ -7,6 +7,7 @@
 	System.out.println(memberId);
 %>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -40,6 +41,8 @@
 <title>수정 로그인</title>
 </head>
 <body>
+<jsp:include page="../header.jsp"></jsp:include>
+<br><br><br>
 <h1>수정화면 로그인</h1>
     <form>    
     	<input type="hidden" id="memberId" name="memberId" value="${SessionMemberId}">

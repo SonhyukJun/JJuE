@@ -24,8 +24,6 @@ public interface MembersService {
 	
 	void modifyMemberTelNumber(MembersVO membersVo) throws Exception;
 	
-	void modifyMember(MembersVO membersVo) throws Exception;
-	
 	int unSignUpMember_check(MembersVO membersVo) throws Exception;
 	
 	void unSignUpMember(String memberId) throws Exception;
@@ -33,9 +31,12 @@ public interface MembersService {
 	String memberNickname(String memberId) throws Exception;
 	
 	String memberTelNumber(String memberId) throws Exception;
-
 	
-	String memberRole() throws Exception;
+	String findMemberId(MembersVO membersVo) throws Exception;
+	
+	void findMemberPassword1(MembersVO membersVo) throws Exception;
+	
+	int findMemberPassword2(MembersVO membersVo) throws Exception;
 	
 	List<MembersVO> selectMembersList() throws Exception;
 	

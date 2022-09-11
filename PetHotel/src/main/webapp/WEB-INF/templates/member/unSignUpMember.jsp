@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -37,10 +38,13 @@
 <title>회원 탈퇴</title>
 </head>
 <body>
-<% 
+<jsp:include page="../header.jsp"></jsp:include>
+<br><br><br>
+<%-- <% 
 	String memberId = (String) session.getAttribute("SessionMemberId");
 	System.out.println(memberId);	
-%>
+%> --%>
+
 <h1>회원 탈퇴</h1>
 <div class="container" style="width:400px">    
         <div class="form-group">

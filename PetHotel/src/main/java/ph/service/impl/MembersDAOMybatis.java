@@ -66,12 +66,6 @@ public class MembersDAOMybatis extends EgovAbstractMapper implements MembersDAO 
 	public void modifyMemberTelNumber(MembersVO membersVo) throws Exception {
 		update("modifyMemberTelNumber", membersVo);
 	}
-	
-	
-	@Override
-	public void modifyMember(MembersVO membersVo) throws Exception {
-		update("modifyMember", membersVo);
-	}
 
 	@Override
 	public int unSignUpMember_check(MembersVO membersVo) throws Exception {
@@ -95,9 +89,20 @@ public class MembersDAOMybatis extends EgovAbstractMapper implements MembersDAO 
 	}
 
 	@Override
-	public String memberRole() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public String findMemberId(MembersVO membersVo) throws Exception {
+		return selectOne("findMemberId", membersVo);
+	}
+	
+	@Override
+	public void findMemberPassword1(MembersVO membersVo) throws Exception {
+		update("findMemberPassword1", membersVo);
+		
+	}
+
+	@Override
+	public int findMemberPassword2(MembersVO membersVo) throws Exception {
+		int result = selectOne("findMemberPassword2", membersVo);
+		return result;
 	}
 
 	@Override
@@ -106,12 +111,6 @@ public class MembersDAOMybatis extends EgovAbstractMapper implements MembersDAO 
 		return null;
 	}
 
-	
 
-	
-
-	
-
-	
 
 }

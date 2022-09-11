@@ -65,27 +65,32 @@
 	
 	function memberTelNumber_check() {
 		var telnumber = $('#memberFirstNumber').val() + $('#memberMiddleNumber').val() + $('#memberLastNumber').val();
-		$.ajax({
-			url: 'memberTelNumber_check.do',
-			type: 'POST',
-			data: {memberTelNumber:telnumber},
-			datatype: 'JSON',
-			success: function (data) {
-				if(data == 0){
-					alert("사용할 수 있는 전화번호 입니다.");
-					$('#telNumber_check').html('V<br>');
-	    	      	$('#telNumber_check').attr('color', '#199894b3');  
-				} else {
-					alert("중복된 전화번호 입니다.");
-					$('#telNumber_check').html('X<br>');
-	    	      	$('#telNumber_check').attr('color', '#199894b3');  
+		if($('#memberMiddleNumber').val()== "" || $('#memberLastNumber').val() == ""){
+			alert("전화번호에 빈칸이 존재합니다.\n확인해주세요.")
+		} else if ($('#memberMiddleNumber').val().length < 4 || $('#memberLastNumber').val().length < 4){
+			alert("전화번호 형식이 맞지않습니다.")
+		} else {
+			$.ajax({
+				url: 'memberTelNumber_check.do',
+				type: 'POST',
+				data: {memberTelNumber:telnumber},
+				datatype: 'JSON',
+				success: function (data) {
+					if(data == 0){
+						alert("사용할 수 있는 전화번호 입니다.");
+						$('#telNumber_check').html('V<br>');
+		    	      	$('#telNumber_check').attr('color', '#199894b3');  
+					} else {
+						alert("중복된 전화번호 입니다.");
+						$('#telNumber_check').html('X<br>');
+		    	      	$('#telNumber_check').attr('color', '#199894b3');  
+					}
 				}
-			}
-		})
+			})
+		}
 	}	
 	
-	function signUpMember() {
-		
+	function signUpMember() {		
 		var id = $('#memberId').val();
 		var password = $('#memberPassword').val();
 		var checkpassword = $('#memberCheckPassword').val();
@@ -112,34 +117,40 @@
 			alert("전화번호를 입력해 주세요.")
 		} else if(password != checkpassword) {
 			alert("비밀번호가 일치하지 않습니다.")
+		} else if($('#memberFirstResident').val().length < 6 || $('#memberLastResident').val() == "") {
+			alert("주민등록번호 형식이 맞지 않습니다.")
+		} else if($('#memberMiddleNumber').val()== "" || $('#memberLastNumber').val() == ""){
+			alert("전화번호에 빈칸이 존재합니다.\n확인해주세요.")
+		} else if ($('#memberMiddleNumber').val().length < 4 || $('#memberLastNumber').val().length < 4){
+			alert("전화번호 형식이 맞지않습니다.")
 		} else {
-		$.ajax({
-			url: 'signUpMember.do',
-			type: 'POST',
-			data: {
-				memberId:id,
-				memberPassword:password,
-				memberCheckPassword:checkpassword,
-				memberName:name,
-				memberNickname:nickname,
-				memberResident:resident,
-				memberAddress:address,
-				memberTelNumber:telnumber
-			},
-			datatype: 'JSON',
-			success: function (data) {
-				if(data == "id"){
-					alert("아이디 중복체크가 필요합니다.");
-				} else if(data == "nick") {
-					alert("닉네임 중복체크가 필요합니다.");
-				} else if(data == "tel"){
-					alert("전화번호가 중복됩니다.");
-				} else if(data == "ok") {
-					alert("회원 가입 성공!");
-					location='login.do'
+			$.ajax({
+				url: 'signUpMember.do',
+				type: 'POST',
+				data: {
+					memberId:id,
+					memberPassword:password,
+					memberCheckPassword:checkpassword,
+					memberName:name,
+					memberNickname:nickname,
+					memberResident:resident,
+					memberAddress:address,
+					memberTelNumber:telnumber
+				},
+				datatype: 'JSON',
+				success: function (data) {
+					if(data == "id"){
+						alert("아이디 중복체크가 필요합니다.");
+					} else if(data == "nick") {
+						alert("닉네임 중복체크가 필요합니다.");
+					} else if(data == "tel"){
+						alert("전화번호가 중복됩니다.");
+					} else if(data == "ok") {
+						alert("회원 가입 성공!");
+						location='login.do'
+					}
 				}
-			}
-		})
+			})		
 		}
 	}
 </script>
@@ -202,7 +213,7 @@
             <input type="text" style="width:30px" maxlength="4" id="memberLastNumber" name="memberLastNumber" placeholder="0000" required>
             <input type="button" onclick="memberTelNumber_check()" value="전화번호 중복 체크"/>
             <font id="telNumber_check" size="2"></font>
-        </div>  
+        </div>
         
         <input type="button" id="signUpMember" onclick="signUpMember()" value="회원가입"/>
         <button type="button" onclick="location.href='login.do'">뒤로 가기</button>

@@ -60,13 +60,7 @@
 	<update id="modifyMemberTelNumber">
 		UPDATE members SET memberTelNumber=#{memberTelNumber} WHERE memberId=#{memberId}
 	</update>
-	
-	<update id="modifyMember">
-		update members set
-		memberPassword=#{memberPassword}, memberCheckPassword=#{memberCheckPassword}, memberNickname=#{memberNickname}, memberAddress=#{memberAddress}, memberTelNumber=#{memberTelNumber}
-		where memberId=#{memberId}
-	</update>
-	
+
 	<select id="unSignUpMember_check" resultType="int">
 		select count(*) from members where memberId=#{memberId} and memberPassword=#{memberPassword}
 	</select>
@@ -74,4 +68,16 @@
 	<delete id="unSignUpMember">
 		delete from members where memberId=#{memberId}
 	</delete>
+	
+	<select id="findMemberId" resultType="String">
+		SELECT memberId FROM members WHERE memberName=#{memberName} AND memberResident=#{memberResident} AND memberTelNumber=#{memberTelNumber}
+	</select>
+	
+	<update id="findMemberPassword1">
+		UPDATE members SET memberPassword=#{memberPassword}, memberCheckPassword=#{memberCheckPassword} WHERE memberId=#{memberId}
+	</update>
+	
+	<select id="findMemberPassword2" resultType="int">
+		select count(*) from members where memberId=#{memberId} and memberTelNumber=#{memberTelNumber}
+	</select>
 </mapper>

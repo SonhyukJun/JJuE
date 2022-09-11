@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -57,7 +58,8 @@
 				success: function (data) {
 					if(data == "ok"){
 						alert("닉네임 변경 성공");
-						location="selectMember.do";
+						opener.parent.location="http://localhost:8080/PetHotel/selectMember.do";
+						self.close();
 					} else if(data == "no"){
 						alert("중복된 닉네임이 존재합니다.\n다시 확인해주세요");						  
 					}
@@ -70,12 +72,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
+<jsp:include page="../../header.jsp"></jsp:include>
+<br><br><br>
+<%-- <% 
 	String memberId = (String) session.getAttribute("SessionMemberId");
 	System.out.println(memberId);
 	
 	MembersVO memberSession = (MembersVO) session.getAttribute("SessionMember");	
-%>		
+%>	 --%>	
 <h1>닉네임 변경 페이지</h1>
 <input type="hidden" id="memberId" name="memberId" value="${SessionMember.getMemberId()}"/>
 	<div class="form-group">
