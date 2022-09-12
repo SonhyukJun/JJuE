@@ -5,6 +5,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
+<style>
+.btn{
+	background-color: #FFC846;
+}
+.btn:hover{
+	background-color: #FFC846;
+}
+
+</style>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 	function unSignUpMember() {
@@ -55,8 +64,8 @@
             <label for="memberPassword">비밀번호</label>
             <input type="text" id="memberPassword" name="memberPassword" placeholder="사용자 비밀번호">
         </div>
-        <button type="button" id="unSignUpMember" onclick="unSignUpMember()">회원 탈퇴</button>
-        <button type="button" onclick="location.href='selectMember.do'">뒤로 가기</button>
+        <button type="button" id="unSignUpMember" class="btn" onclick="unSignUpMember()">회원 탈퇴</button>
+        <button type="button"class="btn"  onclick="location.href='selectMember.do'">뒤로 가기</button>
     </div>
 </body>
 </html>

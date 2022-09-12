@@ -10,6 +10,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
+<style>
+.btn{
+	background-color: #FFC846;
+}
+.btn:hover{
+	background-color: #FFC846;
+}
+
+</style>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 	function loginMember() {
@@ -50,7 +59,8 @@
             <label for="memberPassword">비밀번호</label>
             <input type="password" id="memberPassword" name="memberPassword" placeholder="비밀번호 입력해주세요" >
         </div>
-        <input type="button" onclick="loginMember()" value="확인"/>
+        &nbsp;
+        <input type="button" class="btn" onclick="loginMember()" value="확인"/>
     </form>
 </body>
 </html>

@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeesVO {
-	private Integer employeeNo;
-	private String employeeId;
+	private String employeeNo;	
 	private String employeePassword;
 	private String employeeName;
 	private String employeeNickname;

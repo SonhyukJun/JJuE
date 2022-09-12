@@ -7,6 +7,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
+<style>
+.btn{
+	background-color: #FFC846;
+}
+.btn:hover{
+	background-color: #FFC846;
+}
+
+</style>
 <title>개인 정보 조회</title>
 </head>
 <body>
@@ -54,9 +63,9 @@
 		<td>${memberSelect.memberGrade}</td>
 	</tr>
 </table>
-
-<button type="button" class="btn btn-primary" onclick="location.href='modifyMemberLogin.do'">개인 정보 수정</button>
-<button type="button" class="btn btn-primary" onclick="location.href='unSignUpMember.do'">회원 탈퇴 </button>
+<br>
+<button type="button" class="btn" onclick="location.href='modifyMemberLogin.do'">개인 정보 수정</button>
+<button type="button" class="btn" onclick="location.href='unSignUpMember.do'">회원 탈퇴 </button>
 
 </body>
 </html>

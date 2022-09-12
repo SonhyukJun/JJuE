@@ -3,7 +3,6 @@
 <mapper namespace="pid.sqlmap.mappers.Employees_SQL">
 	<resultMap type="employees" id="employeesResult">
 		<result property="employeeNo" column="employeeNo" />
-		<result property="employeeId" column="employeeId" />
 		<result property="employeePassword" column="employeePassword" />
 		<result property="employeeName" column="employeeName" />
 		<result property="employeeNickname" column="employeeNickname" />
@@ -13,4 +12,24 @@
 		<result property="employeeRole" column="employeeRole" />
 	</resultMap>
 	
+	<select id="loginEmployee" resultType="int">
+		select count(*) from employees where employeeNo=#{employeeNo} and employeePassword=#{employeePassword}
+	</select>
+	
+	<insert id="insertEmployee">
+		insert into employees
+		values(#{employeeNo}, #{employeePassword}, #{employeeName}, #{employeeNickname}, #{employeeResident}, #{employeeTelNumber},#{employeeAddress},#{employeeRole});
+	</insert>
+	
+	<select id="selectEmployee" resultMap="employeesResult">
+		select * from employees where employeeNo=#{employeeNo}
+	</select>
+	
+	<select id="selectEmployeeNickname" resultType="String">
+		select employeeNickname from employees where employeeNo=#{employeeNo}
+	</select>
+	
+	<select id="selectEmployeeRole" resultType="String">
+		select employeeRole from employees where employeeNo=#{employeeNo}
+	</select>
 </mapper>

@@ -71,9 +71,11 @@ public class MembersController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, HttpServletRequest request) {
 		String memberId = "";
+		String employeeNo = "";
 		session = request.getSession();
 		memberId = (String) session.getAttribute("SessionMemberId");
-		if (memberId != null) {		
+		employeeNo = (String) session.getAttribute("SessionEmployeeNo");		
+		if (memberId != null || employeeNo != null) {		
 			return "main";
 		} else {
 			return "login";
@@ -110,7 +112,15 @@ public class MembersController {
 
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
+		session.removeAttribute("SessionMember");
 		session.removeAttribute("SessionMemberId");
+		session.removeAttribute("SessionMemberNickname");
+		session.removeAttribute("SessionMemberTelNumber");		
+		
+		session.removeAttribute("SessionEmployee");
+		session.removeAttribute("SessionEmployeeNo");
+		session.removeAttribute("SessionEmployeeNickname");
+		session.removeAttribute("SessionEmployeeRole");
 		return "main";
 	}
 
@@ -379,14 +389,30 @@ public class MembersController {
 	}
 	
 	@RequestMapping(value = "/membersList.do", method= RequestMethod.GET)
-	public String memberListForm(MembersVO membersVo, Model model) throws Exception {
-		model.addAttribute("membersList", service.selectMembers(membersVo) );
-		return "member/membersList";
+	public String memberListForm(MembersVO membersVo, Model model,
+			HttpSession session, HttpServletRequest request) throws Exception {
+		String employeeNo = "";
+		session = request.getSession();
+		employeeNo = (String) session.getAttribute("SessionEmployeeNo");
+		if(employeeNo != null) {
+			model.addAttribute("membersList", service.selectMembers(membersVo));
+			return "member/membersList";
+		} else {
+			return "loginCheck";
+		}
 	}
 	
 	@RequestMapping(value = "/adminSelectMember.do", method = RequestMethod.GET)
-	public String adminSelectMember(String memberId, Model model) throws Exception {
-		model.addAttribute("memberSelect", service.selectMember(memberId));
-		return "member/selectMember";
+	public String adminSelectMember(String memberId, Model model,
+			HttpSession session, HttpServletRequest request) throws Exception {
+		String employeeNo = "";
+		session = request.getSession();
+		employeeNo = (String) session.getAttribute("SessionEmployeeNo");
+		if(employeeNo != null) {
+			model.addAttribute("memberSelect", service.selectMember(memberId));
+			return "member/selectMember";
+		} else {
+			return "loginCheck";
+		}		
 	}	
 }
