@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pid.sqlmap.mappers.Employees_SQL">
+	<resultMap type="employees" id="employeesResult">
+		<result property="employeeNo" column="employeeNo" />
+		<result property="employeeId" column="employeeId" />
+		<result property="employeePassword" column="employeePassword" />
+		<result property="employeeName" column="employeeName" />
+		<result property="employeeNickname" column="employeeNickname" />
+		<result property="employeeResident" column="employeeResident" />
+		<result property="employeeTelNumber" column="employeeTelNumber" />
+		<result property="employeeAddress" column="employeeAddress" />
+		<result property="employeeRole" column="employeeRole" />
+	</resultMap>
+	
+</mapper>

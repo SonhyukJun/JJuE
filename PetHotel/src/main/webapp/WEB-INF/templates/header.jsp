@@ -1,7 +1,7 @@
 <%@page import="java.awt.print.Printable"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="ph.members.service.MembersVO"%>
+<%@ page import="pid.members.service.MembersVO"%>
 <!DOCTYPE html>
 <html>
 <body>
@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/PetHotel/login.do" class="navbar-brand" style="text-decoration:none;">          
+                <a href="/PetInDeligth/login.do" class="navbar-brand" style="text-decoration:none;">          
                     <span style="vertical-align:middle;">header </span>
                 </a>
             </div>
