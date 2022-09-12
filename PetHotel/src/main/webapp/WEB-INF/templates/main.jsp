@@ -24,17 +24,6 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 <br><br><br>
-<a href="freeboard.do">자유게시판</a><br>
-<a href="reviewBoardlist.do">후기게시판</a><br>
-<a href="reserve.do">예약하러가기</a><br>
-Body Form <br>
-Body Form <br>
-Body Form <br>
-Body Form <br>
-Body Form <br>
-Body Form <br>
-Body Form <br>
-Body Form <br>
 
 <div class="container">
   <p>Others:</p>
@@ -44,8 +33,7 @@ Body Form <br>
   <i class="fas fa-file"></i>
   <i class="fas fa-home"></i>
 </div>
-	<input type="button" class="fas fa-home" value="fas fa-home"/>
-	<a href="#" ><i class="fas fa-home"/></a>
+	<a href="#" ><i class="fas fa-home"></i></a>
 <div id="footer">
 	<jsp:include page="footer.jsp"></jsp:include>
 </div>

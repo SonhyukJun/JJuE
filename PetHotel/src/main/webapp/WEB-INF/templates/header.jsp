@@ -33,7 +33,7 @@
 
 <div class="header">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container">        	
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="">
                     <span class="sr-only">Toggle navigation</span>
@@ -42,10 +42,24 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="/PetInDeligth/login.do" class="navbar-brand" style="text-decoration:none;">          
-                    <span style="vertical-align:middle;">header </span>
+                    <span style="vertical-align:middle;">Pet In Delight</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            	<ul class="nav navbar-nav navbar-left">
+            		<li>
+            			<a href="">소개</a>
+            		</li>
+            		<li>
+            			<a href="freeboard.do">자유게시판</a>
+            		</li>
+            		<li>
+            			<a href="reviewBoardlist.do">후기게시판</a>
+            		</li>
+            		<li>
+            			<a href="reserve.do">예약하러가기</a>
+            		</li>
+            	</ul>
                 <ul class="nav navbar-nav navbar-right">
               		<%
               			if(memberId=="visitor" && employeeNickname == "visitor") {
