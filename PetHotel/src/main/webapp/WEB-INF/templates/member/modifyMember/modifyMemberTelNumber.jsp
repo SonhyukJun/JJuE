@@ -79,7 +79,7 @@
 				success: function(data) {
 					if(data == "ok"){
 						alert("수정성공")
-						opener.parent.location="http://localhost:8080/PetHotel/modifyMember.do";
+						opener.parent.location="http://localhost:8080/PetInDeligth/modifyMember.do";
 						self.close();
 					} else if(data == "no") {
 						alert("전화번호 중복체크를 확인해 주세요 .")

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="ph.members.service.MembersVO"%>
+<%@ page import="pid.members.service.MembersVO"%>
 <!DOCTYPE html>
 <% 
 	String memberId = (String) session.getAttribute("SessionMemberId");

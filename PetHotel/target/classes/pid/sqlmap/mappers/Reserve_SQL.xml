@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="pid.sqlmap.mappers.Reserve_SQL">
+
+	<resultMap type="room" id="roomResult">
+		<result property="roomNo" column="roomNo"/>
+		<result property="price" column="price"/>
+		<result property="count" column="count"/>
+		<result property="picturePath" column="picturePath"/>
+	</resultMap >
+	
+	<select id="searchRoom" resultMap="roomResult">
+		select * from room where roomNo not in (
+			select roomNo  from reserve
+			where (#{reserveStartDate} between reserveStartDate and date_add(reserveEndDate, interval -1 DAY)
+			or (#{reserveEndDate} between date_add(reserveStartDate, interval +1 DAY) and reserveEndDate))
+		) and count >= #{count}
+	</select>
+	
+	<select id="roomInformation" resultMap="roomResult">
+		select * from room where roomNo = #{roomNo}
+	</select>
+	
+</mapper>

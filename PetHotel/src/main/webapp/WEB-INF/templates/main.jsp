@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="ph.members.service.MembersVO"%>
+<%@ page import="pid.members.service.MembersVO"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,9 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 <br><br><br>
+<a href="freeboard.do">자유게시판</a><br>
+<a href="reviewBoardlist.do">후기게시판</a><br>
+<a href="reserve.do">예약하러가기</a><br>
 Body Form <br>
 Body Form <br>
 Body Form <br>

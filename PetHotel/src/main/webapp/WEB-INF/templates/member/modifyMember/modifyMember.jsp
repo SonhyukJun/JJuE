@@ -18,7 +18,7 @@
 		
 		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
 		
-		const url = "http://localhost:8080/PetHotel/modifyMemberPassword.do";
+		const url = "http://localhost:8080/PetInDeligth/modifyMemberPassword.do"; 
 		window.open(url, "비밀번호 변경", windowStatus);		
 	}
 	function modifyMemberNickname() {
@@ -30,7 +30,7 @@
 		
 		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
 		
-		const url = "http://localhost:8080/PetHotel/modifyMemberNickname.do";
+		const url = "http://localhost:8080/PetInDeligth/modifyMemberNickname.do";
 		window.open(url, "닉네임 변경", windowStatus);		
 	}
 	function modifyMemberTelNumber() {
@@ -42,7 +42,7 @@
 		
 		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
 		
-		const url = "http://localhost:8080/PetHotel/modifyMemberTelNumber.do";
+		const url = "http://localhost:8080/PetInDeligth/modifyMemberTelNumber.do";
 		window.open(url, "전화번호 변경", windowStatus);		
 	}
 </script>

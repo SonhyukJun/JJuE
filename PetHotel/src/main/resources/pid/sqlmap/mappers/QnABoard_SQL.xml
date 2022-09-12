@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pid.sqlmap.mappers.QnABoard_SQL">
+	<resultMap type="qnaboard" id="qnABoardResult">
+		<result property="boardNo" column="boardNo" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="wdate" column="wdate" />
+		<result property="boardType" column="boardType" />
+		<result property="memberId" column="memberId" />
+		<result property="memberNickname" column="memberNickname" />
+		<result property="employeeId" column="employeeId"/>
+		<result property="employeeNickname" column="employeeNickname" />
+		<result property="employeeRole" column="employeeRole" />
+		<result property="reviewPicturePath" column="reviewPicturePath" />
+		
+	</resultMap>
+	
+	<insert id="insertQnABoard">
+		insert into board (title,content,wdate,boardType,memberId,memberNickname,
+						   employeeId,employeeNickname,employeeRole,reviewPicturePath)
+					values (#{title},#{content},now(),#{boardType},#{memberId},
+							#{memberNickname},#{employeeId},
+							#{employeeNickname},#{employeeRole},#{reviewPicturePath})
+	</insert>
+	
+	<select id="selectQnABoard" resultMap="qnABoardResult">
+		select * from board where boardNo=#{boardNo}
+	</select>
+	
+	<select id="qnABoardList" resultMap="qnABoardResult">
+		select * from board
+	</select>
+	
+	<update id="updateQnABoard">
+		update board set title=#{title} , content=#{content}
+		where boardNo=#{boardNo}
+	</update>
+	
+	<delete id="deleteQnABoard">
+		delete from board where boardNo=#{boardNo}
+	</delete>
+	
+	<select id="nextQnABoard" resultMap="qnABoardResult">
+		SELECT * FROM board WHERE boardType LIKE '%QnA%' AND boardNo>#{boardNo} order by boardNo LIMIT 1
+	</select>
+	
+	<select id="backQnABoard" resultMap="qnABoardResult"> 
+		SELECT * FROM board WHERE boardType LIKE '%QnA%' AND #{boardNo}>boardNo order by boardNo desc LIMIT 1
+	</select>
+	
+</mapper>
