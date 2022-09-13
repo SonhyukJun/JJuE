@@ -12,7 +12,7 @@
 .btn:hover{
 	background-color: #FFC846;
 }
-</style>
+</style> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -79,6 +79,10 @@
 <title>로그인</title>
 </head>
 <body>
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>Pet In Delight</h1>
+  <p>강병준 손혁준 이현동 최재선</p> 
+</div>
 <div class="container mt-3">
   <h1>로그인</h1>
   <br>
@@ -122,6 +126,9 @@
         <input type="button" class="btn" onclick="loginEmployee()" value="로그인"/>        
     </div>   
   </div>
-</div>        
+</div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>Pet In Delight</p>
+</div>    
 </body>
 </html>

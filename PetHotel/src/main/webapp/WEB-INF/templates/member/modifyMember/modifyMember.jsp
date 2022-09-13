@@ -12,7 +12,7 @@
 	function modifyMemberPassword() {
 		var width = 600;
 		var height = 600;
-		
+		 
 		var left = (window.screen.width/2) - (width/2);
 		var top = (window.screen.height / 4); 
 		
@@ -95,5 +95,6 @@
 		<td><button onclick="javascript:modifyMemberTelNumber()">전화번호 변경</button></td>
 	</tr>
 </table>
+<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>

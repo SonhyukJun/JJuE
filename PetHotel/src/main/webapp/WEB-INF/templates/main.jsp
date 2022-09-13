@@ -9,20 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-#footer { 
-    overflow: hidden;
-    position: absolute;
-    bottom: 0; 
-    height: 50px; width:100%; text-align: center;
-    margin-left:0px; margin-bottom:-1px;
-    color: #333;
-    background-color: #fff;
-    }
-</style>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <br><br><br>
 
 <div class="container">
@@ -34,8 +23,8 @@
   <i class="fas fa-home"></i>
 </div>
 	<a href="#" ><i class="fas fa-home"></i></a>
-<div id="footer">
-	<jsp:include page="footer.jsp"></jsp:include>
-</div>
+
+
+<jsp:include page="footer.jsp"></jsp:include>
 </body>  
 </html>

@@ -141,5 +141,6 @@
         <font id="telNumber_check" size="2"></font>      
 	</div>
 	<input type="button" id="modifyMemberTelNumber" onclick="modifyMemberTelNumber()" value="변경하기"/>
+<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>

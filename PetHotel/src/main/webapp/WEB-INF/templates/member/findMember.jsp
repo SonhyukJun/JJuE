@@ -15,5 +15,6 @@
 <br>
 <a href="modifylogin.do">로그인하러가기</a>
 <a href="findMemberPassword.do">비밀번호찾으로가기</a>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

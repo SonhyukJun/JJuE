@@ -62,5 +62,6 @@
         &nbsp;
         <input type="button" class="btn" onclick="loginMember()" value="확인"/>
     </form>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

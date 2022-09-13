@@ -21,10 +21,6 @@
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
 <br><br><br>
-<%-- <% 
-	String memberId = (String) session.getAttribute("SessionMemberId");
-	System.out.print(memberId);
-%> --%>
 <h1>개인 정보 조회</h1>
 <table border="1">
 	<tr>
@@ -66,6 +62,6 @@
 <br>
 <button type="button" class="btn" onclick="location.href='modifyMemberLogin.do'">개인 정보 수정</button>
 <button type="button" class="btn" onclick="location.href='unSignUpMember.do'">회원 탈퇴 </button>
-
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

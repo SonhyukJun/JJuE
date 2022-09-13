@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -157,6 +158,8 @@
 <title>회원가입</title>
 </head>
 <body>
+<jsp:include page="../header.jsp"></jsp:include>
+<br><br><br>
     <div class="container" style="width:400px">
         <h1>회원가입</h1>
         <div class="form-group">
@@ -218,6 +221,6 @@
         <input type="button" id="signUpMember" onclick="signUpMember()" value="회원가입"/>
         <button type="button" onclick="location.href='login.do'">뒤로 가기</button>
     </div> 
-
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

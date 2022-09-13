@@ -74,5 +74,6 @@
             <input type="text" style="width:40px" maxlength="4" id="memberLastNumber" name="memberLastNumber" placeholder="0000" required>
 	</div>
 	<input type="button" id="findMemberId" onclick="findMemberId()" value="아이디찾기"/>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

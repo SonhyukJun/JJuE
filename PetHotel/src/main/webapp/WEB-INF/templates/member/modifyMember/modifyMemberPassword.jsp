@@ -87,5 +87,6 @@
             <font id="password_check" size="2"></font>
         </div>
         <input type="button" id="modifyMemberPassword" onclick="modifyMemberPassword()" value="변경하기"/>
+<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>

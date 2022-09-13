@@ -172,6 +172,6 @@
     <input type="button" id="findMemberPassword2" onclick="findMemberPassword2()" value="변경하기"/>
 <% } %>
 
-
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

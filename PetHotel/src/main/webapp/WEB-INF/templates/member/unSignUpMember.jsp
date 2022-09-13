@@ -66,6 +66,7 @@
         </div>
         <button type="button" id="unSignUpMember" class="btn" onclick="unSignUpMember()">회원 탈퇴</button>
         <button type="button"class="btn"  onclick="location.href='selectMember.do'">뒤로 가기</button>
-    </div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

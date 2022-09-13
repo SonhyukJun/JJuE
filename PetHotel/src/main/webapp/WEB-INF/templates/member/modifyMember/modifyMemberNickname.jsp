@@ -97,6 +97,6 @@
 	<div>
 		<input type="button" id="modifyMemberNickname" onclick="modifyMemberNickname()" value="변경하기"/>
 	</div>
-
+<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>
