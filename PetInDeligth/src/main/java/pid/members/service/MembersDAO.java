@@ -2,7 +2,7 @@ package pid.members.service;
 
 import java.util.List;
 
-public interface MembersDAO {
+public interface MembersDAO {  
 	
 	int memberId_check(String memberId) throws Exception;
 	

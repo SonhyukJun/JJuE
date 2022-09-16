@@ -6,6 +6,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	function checkOut(a) {
+		var no = a;
+		alert(a)
+		$.ajax({
+			url: "checkOut.do",
+			type: 'POST',
+			data: {
+				reserveNo: no
+			},
+			datatype: 'JSON',
+			success: function(data){
+				if(data == "ok"){
+					alert("퇴실 처리 완료")
+				}
+			}
+		})
+	}
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -37,6 +58,7 @@
 					<td align="center">${reserveListAll.price}</td>
 					<td align="center">${reserveListAll.reserveType}</td>
 					<td align="center">${reserveListAll.reqContent}</td>
+					<td><input type="button" onclick="checkOut(${reserveListAll.reserveNo})" value="퇴실"/></td>					
 				</tr>
 				</c:forEach>
 			</tbody>		

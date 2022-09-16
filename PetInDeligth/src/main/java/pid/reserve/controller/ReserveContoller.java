@@ -234,4 +234,21 @@ public class ReserveContoller {
 		conditionMap.put("예약상태", "RESERVETYPE");
 		return conditionMap;
 	}
+	
+	@RequestMapping(value = "/checkOut.do",method = RequestMethod.GET)
+	public String checkOUT() {
+		return "error/gradeCheck";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/checkOut.do", method = RequestMethod.POST)
+	public String checkOut(@RequestParam(value = "reserveNo") int reserveNo,
+			ReserveVO reserveVo) throws Exception {
+		String data ="";
+		System.out.println(reserveNo);		
+		reserveService.checkOut(reserveNo);
+		data = "ok";
+		System.out.println(data);
+		return data;
+	}
 }

@@ -20,5 +20,7 @@ public interface ReserveService {
 	List<ReserveVO> reserveListAll(ReserveVO vo) throws Exception;
 	
 	int totalReserve(ReserveVO vo) throws Exception;
+	
+	void checkOut(int reserveNo) throws Exception;
 }
 

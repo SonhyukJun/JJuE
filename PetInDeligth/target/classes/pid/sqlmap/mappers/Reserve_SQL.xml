@@ -62,12 +62,12 @@
 	</update>
 	
 	<select id="reserveListAll" resultMap="reserveResult">
-		select * from reserve where 1=1 
+		select * from reserve where 1=1
 		<if test="searchCondition=='RESERVENO'">
 			AND RESERVENO LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
 		<if test="searchCondition=='ROOMNO'">
-			AND ROOMNO LIKE CONCAT('%',#{searchKeyword},'%')
+			AND ROOMNO=#{searchKeyword}
 		</if>
 		<if test="searchCondition=='MEMBERID'">
 			AND MEMBERID LIKE CONCAT('%',#{searchKeyword},'%')
@@ -81,4 +81,8 @@
 	<select id="totalReserve" resultType="int">
 		select count(*) from reserve
 	</select>
+	
+	<update id="checkOut">
+		UPDATE reserve SET reserveType="O" WHERE reserveNo=#{reserveNo}
+	</update>
 </mapper>

@@ -62,4 +62,9 @@ public class ReserveServiceImpl implements ReserveService{
 		int result = reserveDAO.totalReserve(vo);
 		return result;
 	}
+
+	@Override
+	public void checkOut(int reserveNo) throws Exception {
+		reserveDAO.checkOut(reserveNo);		
+	}
 }

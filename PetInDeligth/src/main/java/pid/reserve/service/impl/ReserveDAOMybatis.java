@@ -59,4 +59,9 @@ public class ReserveDAOMybatis extends EgovAbstractMapper implements ReserveDAO{
 		return result;
 	}
 
+	@Override
+	public void checkOut(int reserveNo) throws Exception {
+		update("checkOut", reserveNo);
+	}
+
 }
