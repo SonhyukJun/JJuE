@@ -23,6 +23,8 @@ public class MembersVO {
 	
 	private String searchCondition;
 	private String searchKeyword;
+	
+	
 
 	public MembersVO(String memberId, String memberPassword, String memberCheckPassword, String memberName,
 			String memberNickname, String memberResident, String memberAddress, String memberTelNumber) {

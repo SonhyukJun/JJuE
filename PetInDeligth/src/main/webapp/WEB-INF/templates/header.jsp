@@ -48,7 +48,7 @@ cursor: default;
             <div class="navbar-header">
                  <a href="/PetInDeligth/login.do" class="navbar-brand" style="text-decoration:none;">          
                     <span style="vertical-align:middle;">
-                    <img src="${pageContext.request.contextPath}/resource/img/ex2.png">
+                    <img src="${pageContext.request.contextPath}/resource/img/ex1.png">
                     </span>
                 </a>                
             </div>            

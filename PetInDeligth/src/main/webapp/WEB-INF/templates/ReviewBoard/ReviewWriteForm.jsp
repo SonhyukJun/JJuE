@@ -9,6 +9,7 @@
 <link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
 <link href="resource/static/css/common.css" rel="stylesheet">
 <link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
+<link href="resource/static/css/star.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 .btn{
@@ -42,6 +43,7 @@ min-height: 100%;
    function update(){
       var boardNoB=$('#boardNo').val();
       var titleB = $('#title').val();
+      var countingStarB = $('input[name="reviewStar"]:checked').val();
       var contentB = $('#content').val().replace(/\n/g,"<br>");
       $.ajax({
          url: 'reviewUpdate.do',
@@ -50,6 +52,7 @@ min-height: 100%;
             boardNo:boardNoB,
             title:titleB,
             content:contentB,
+            countingStars:countingStarB
             },
          datatype: 'JSON',
          success: function (data) {
@@ -62,6 +65,7 @@ min-height: 100%;
    function insert() {
       var titleB = $('#title').val();
       var contentB = $('#content').val().replace(/\n/g,"<br>");
+      var countingStarB = $('input[name="reviewStar"]:checked').val();
       var reserveNoB =$('#reserveNo').val();
       if(titleB==""){
          alert("제목을 입력하여 주세요.")
@@ -74,7 +78,8 @@ min-height: 100%;
          data: {
             title:titleB,
             content:contentB,
-            reserveNo:reserveNoB
+            reserveNo:reserveNoB,
+            countingStars:countingStarB
             },
          datatype: 'JSON',
          success: function (data) {
@@ -125,9 +130,22 @@ min-height: 100%;
                 <td><input id="title" type="text" value="${reviewBoard.title}"/></td>
             </tr>
             <tr>
+                <th style="padding:13px 0 0 15px;">별점</th>
+                <td>
+                	<form class="mb-3" name="myform" id="myform" method="post">
+					<fieldset>
+						<input type="radio" name="reviewStar" value="5" id="rate5"><label for="rate5">★</label>
+						<input type="radio" name="reviewStar" value="4" id="rate4"><label for="rate4">★</label>
+						<input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
+						<input type="radio" name="reviewStar" value="2" id="rate2"><label for="rate2">★</label>
+						<input type="radio" name="reviewStar" value="1" id="rate1" checked="checked"><label	for="rate1">★</label>					</fieldset>
+					</form>                
+                </td>
+            </tr>
+            
+            <tr>
                 <th style="padding:13px 0 0 15px;">내용</th>
-                <td><textarea id="content" maxlength="140" rows="10" cols="100" style="height: 300px;"
-                >${reviewBoard.content}</textarea>
+                <td><textarea id="content" maxlength="140" rows="10" cols="100" style="height: 300px;">${reviewBoard.content}</textarea>
                 </td>
             </tr>
             
@@ -135,8 +153,7 @@ min-height: 100%;
             <tr>
                 <th style="padding:13px 0 0 15px;">파일첨부</th>
                 <td><input type="file" id="file" name="file"></td>
-            </tr>
-         
+            </tr>         
         </table>
         
         <!-- 

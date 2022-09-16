@@ -9,10 +9,8 @@
       <result property="boardType" column="boardType" />
       <result property="memberId" column="memberId" />
       <result property="memberNickname" column="memberNickname" />
-      <result property="employeeId" column="employeeId" />
-      <result property="employeeNickname" column="employeeNickname" />
-      <result property="employeeRole" column="employeeRole" />
       <result property="reviewPicturePath" column="reviewPicturePath" />
+      <result property="countingStars" column="countingStars" />   
    </resultMap>
    
    
@@ -55,9 +53,8 @@
 
    <!-- 글 삽입 -->
    <insert id="insertReviewBoard">INSERT INTO board(title, content, wdate, boardType,
-      memberId,
-      memberNickname)VALUES(#{title},#{content},NOW(),#{boardType},
-      #{memberId}, #{memberNickname}) 
+      memberId, memberNickname, countingStars)VALUES(#{title},#{content},NOW(),#{boardType},
+      #{memberId}, #{memberNickname},#{countingStars}) 
    </insert>
 
 	<select id="selectBoardMem" resultMap="membersResult">
@@ -68,7 +65,7 @@
 
    <!-- 글 리스트 조회 + 검색 -->
    <select id="selectReviewList" resultMap="boardResult">
-      select boardNo, boardType, title, memberId, memberNickname, wdate from board
+      select boardNo, boardType, title, memberId, memberNickname, wdate, countingStars from board
       <where>
          <if test="searchCondition=='TITLE'">AND TITLE LIKE CONCAT('%',#{searchKeyword},'%')AND
             boardType="Review" </if>
@@ -129,6 +126,10 @@
 
    <!-- 수정 -->
    <update id="updateReview">
-      UPDATE board SET title=#{title},content=#{content}WHERE boardNo=#{boardNo}
+      UPDATE board SET title=#{title},content=#{content}, countingStars=#{countingStars} WHERE boardNo=#{boardNo}
    </update>
+   
+   <select id="totalStar" resultType="int">
+   		SELECT round(SUM(countingStars)/COUNT(*)) FROM board WHERE boardType="Review"
+   </select>
 </mapper>

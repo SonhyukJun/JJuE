@@ -10,6 +10,7 @@
 <link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
 <link href="resource/static/css/common.css" rel="stylesheet">
 <link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
+<link href="resource/static/css/star.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 .btn{
@@ -29,6 +30,9 @@ height: 100%;
 }
 .a {
 min-height: 100%;
+}
+.stars {
+color: #FFD200;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -115,9 +119,20 @@ min-height: 100%;
 
             
             <tr>
+                <th style="width: 100px">별점</th>
+                <td>
+        			<c:set var="star" value="${reviewBoard.countingStars}"/>
+        			<c:forEach var="a" begin="1" end="${star}">
+        			<label class="stars">★</label>
+        			</c:forEach>        				
+        		</td>
+
+            </tr>
+            <tr>
                 <th style="width: 100px">제목</th>
                 <td>${reviewBoard.title}<br/></td>
             </tr>
+            
             <tr>
                 <th style="width: 100px">내용</th>
                 <td width=300 height=300 style='table-layout:fixed'>${reviewBoard.content}</td>

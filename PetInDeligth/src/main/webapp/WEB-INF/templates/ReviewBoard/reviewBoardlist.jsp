@@ -8,6 +8,7 @@
 <link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
 <link href="resource/static/css/common.css" rel="stylesheet">
 <link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
+<link href="resource/static/css/star.css" rel="stylesheet"/>
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
@@ -27,6 +28,9 @@ height: 100%;
 }
 .a {
 min-height: 100%;
+}
+.stars {
+color: #FFD200;
 }
 </style>
 <title>후기 게시판</title>
@@ -75,6 +79,7 @@ min-height: 100%;
         				<th scope="col" width="100">제목</th>
         				<th scope="col" width="100">작성자</th>
         				<th scope="col" width="100">작성일</th>
+        				<th scope="col" width="100">별점</th>
         			</tr>
         		</thead>
         		<tbody>
@@ -86,6 +91,12 @@ min-height: 100%;
         				<td><a href="reviewBoard.do?boardNo=${reviewBoard.boardNo}">${reviewBoard.title}</a></td>
         				<td>${reviewBoard.memberNickname}</td>
         				<td><fmt:formatDate value="${reviewBoard.wdate}" pattern="yyyy-MM-dd HH:mm"/></td>
+        				<td>
+        				<c:set var="star" value="${reviewBoard.countingStars}"/>
+        				<c:forEach var="a" begin="1" end="${star}">
+        					<label class="stars">★</label>
+        				</c:forEach>        				
+        				</td>
         			</tr>
         				</c:forEach>
         			</tbody>
