@@ -75,7 +75,7 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="../../header.jsp"></jsp:include>
-<br><br><br>
+<br><br><br><br><br>
 <% 
 	String memberId = (String) session.getAttribute("SessionMemberId");
 	System.out.println(memberId);

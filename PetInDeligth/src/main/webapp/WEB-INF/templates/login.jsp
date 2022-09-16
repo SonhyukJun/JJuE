@@ -98,6 +98,7 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
+<br><br><br><br><br>
 <div class="a">
 <div class="container" id="wrap">
 	<div align="center">

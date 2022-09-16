@@ -193,7 +193,6 @@ $(document).ready(function(){
 			type: "POST",
 			data: sendDate,
 			success: function(data){
-				alert("suc");
 				$('#showRoom').html(data);
 			}
 		});

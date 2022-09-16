@@ -137,7 +137,7 @@ min-height: 100%;
 %>
 
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br>
+<br><br><br><br><br>
 <div class="a">
 <div class="container" style="width:500px">
 	<div class="page-header">

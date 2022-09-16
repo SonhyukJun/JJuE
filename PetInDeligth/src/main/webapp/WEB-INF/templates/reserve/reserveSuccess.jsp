@@ -22,7 +22,7 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br/><br/><br/>
+<br><br><br><br><br>
 <div class="a">
 <fmt:parseNumber var="startDate_N" value="${reserve.reserveStartDate.time / (1000*60*60*24)}" integerOnly="true" />
 <fmt:parseNumber var="endDate_N" value="${reserve.reserveEndDate.time / (1000*60*60*24)}" integerOnly="true" /> 

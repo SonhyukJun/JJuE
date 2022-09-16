@@ -43,7 +43,7 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<br>
+<br><br><br><br><br>
 <div class="a">
 <div align="center">
 	<img src="${pageContext.request.contextPath}/resource/img/1.png" height="800" width="100%">
