@@ -57,6 +57,12 @@ min-height: 100%;
 							<button onclick="reserveCancle(${reserve.reserveNo})">취소하기</button>
 						</td>
 					</c:if>
+					<c:if test="${reserve.reserveType == 'I'}">
+						<td>
+							사용중 <br>
+							<button onclick="window.open('http://192.168.0.107:81/stream','${room.roomNo}room', 'width=600,height=600')">방 보기</button>
+						</td>
+					</c:if>
 					<c:if test="${reserve.reserveType == 'O'}">
 						<td>
 							체크아웃

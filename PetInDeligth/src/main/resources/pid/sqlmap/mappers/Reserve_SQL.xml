@@ -82,6 +82,10 @@
 		select count(*) from reserve
 	</select>
 	
+	<update id="checkIn">
+		UPDATE reserve SET reserveType="I" WHERE reserveNo=#{reserveNo}
+	</update>
+	
 	<update id="checkOut">
 		UPDATE reserve SET reserveType="O" WHERE reserveNo=#{reserveNo}
 	</update>

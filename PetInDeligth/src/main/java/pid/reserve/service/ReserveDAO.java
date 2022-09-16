@@ -21,5 +21,7 @@ public interface ReserveDAO {
 	
 	int totalReserve(ReserveVO vo) throws Exception;
 	
+	void checkIn(int reserveNo) throws Exception;
+	
 	void checkOut(int reserveNo) throws Exception;
 }

@@ -21,6 +21,8 @@ public interface ReserveService {
 	
 	int totalReserve(ReserveVO vo) throws Exception;
 	
+	void checkIn(int reserveNo) throws Exception;
+	
 	void checkOut(int reserveNo) throws Exception;
 }
 

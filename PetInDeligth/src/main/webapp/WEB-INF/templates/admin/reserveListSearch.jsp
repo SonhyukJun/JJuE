@@ -9,9 +9,25 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
+	function checkIn(a) {
+		var no = a;
+		$.ajax({
+			url: "checkIn.do",
+			type: 'POST',
+			data: {
+				reserveNo: no
+			},
+			datatype: 'JSON',
+			success: function(data){
+				if(data == "ok"){
+					alert("입실 처리 완료")
+				}
+			}			
+		})
+	}
+
 	function checkOut(a) {
 		var no = a;
-		alert(a)
 		$.ajax({
 			url: "checkOut.do",
 			type: 'POST',
@@ -58,7 +74,12 @@
 					<td align="center">${reserveListAll.price}</td>
 					<td align="center">${reserveListAll.reserveType}</td>
 					<td align="center">${reserveListAll.reqContent}</td>
-					<td><input type="button" onclick="checkOut(${reserveListAll.reserveNo})" value="퇴실"/></td>					
+					<c:if test="${reserveListAll.reserveType == 'Y'}">
+						<td><input type="button" onclick="checkIn(${reserveListAll.reserveNo})" value="입실"/></td>
+					</c:if>
+					<c:if test="${reserveListAll.reserveType == 'I'}">
+						<td><input type="button" onclick="checkOut(${reserveListAll.reserveNo})" value="퇴실"/></td>
+					</c:if>			
 				</tr>
 				</c:forEach>
 			</tbody>		

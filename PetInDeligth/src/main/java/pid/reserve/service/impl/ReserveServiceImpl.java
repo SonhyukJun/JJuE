@@ -64,6 +64,11 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 
 	@Override
+	public void checkIn(int reserveNo) throws Exception {
+		reserveDAO.checkIn(reserveNo);	
+	}
+	
+	@Override
 	public void checkOut(int reserveNo) throws Exception {
 		reserveDAO.checkOut(reserveNo);		
 	}

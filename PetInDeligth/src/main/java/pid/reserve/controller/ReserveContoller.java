@@ -241,6 +241,18 @@ public class ReserveContoller {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/checkIn.do", method = RequestMethod.POST)
+	public String checkIn(@RequestParam(value = "reserveNo") int reserveNo,
+			ReserveVO reserveVo) throws Exception {
+		String data ="";
+		System.out.println(reserveNo);		
+		reserveService.checkIn(reserveNo);
+		data = "ok";
+		System.out.println(data);
+		return data;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/checkOut.do", method = RequestMethod.POST)
 	public String checkOut(@RequestParam(value = "reserveNo") int reserveNo,
 			ReserveVO reserveVo) throws Exception {

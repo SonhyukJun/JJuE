@@ -108,7 +108,7 @@ min-height: 100%;
 			<%-- <a href="backPage.do?boardNo=${board.boardNo}">이전 페이지</a> --%>
 			</c:if>
 			<c:if test="${board.boardNo ne max}">
-			<input class="btn" type="button" onclick="location.g" value="다음글"/>
+			<input class="btn" type="button" onclick="location.href='nextPage.do?boardNo=${board.boardNo}'" value="다음글"/>
 			<%-- <a href="nextPage.do?boardNo=${board.boardNo}">다음 페이지</a> --%>
 			</c:if>
 		</div>
