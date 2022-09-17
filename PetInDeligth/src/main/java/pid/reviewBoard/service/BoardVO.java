@@ -14,7 +14,6 @@ public class BoardVO {
 	private String content;
 	private Date wdate;
 	private String boardType;
-
 	
 	//검색기능
 	private String searchCondition;
@@ -24,8 +23,11 @@ public class BoardVO {
 	private String memberId;
 	private String memberNickname;
 	
-	private String reviewPicturePath;
+	private String employeeId;
+	private String employeeNickname;
+	private String employeeRole;
 	
+	private String reviewPicturePath;
 	private int countingStars;
 	
 	//페이징

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <link href="resource/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
 <link href="resource/static/css/common.css" rel="stylesheet">

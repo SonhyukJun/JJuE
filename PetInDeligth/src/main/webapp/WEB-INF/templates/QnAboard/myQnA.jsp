@@ -10,7 +10,7 @@
 <link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .btn{
 	background-color: #FFA500;

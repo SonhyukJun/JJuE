@@ -33,4 +33,6 @@ public interface ReviewBoardDAO {
 	
 	void reserveReviewWrite(ReserveVO reserveVo) throws Exception;
 	
+	double totalStars(BoardVO boardVo) throws Exception;
+	
 }

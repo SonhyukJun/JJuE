@@ -12,7 +12,7 @@
       <result property="reviewPicturePath" column="reviewPicturePath" />
       <result property="countingStars" column="countingStars" />   
    </resultMap>
-   
+    
    
    	<resultMap type="members" id="membersResult">
 		<result property="memberId" column="memberId" />
@@ -53,8 +53,8 @@
 
    <!-- 글 삽입 -->
    <insert id="insertReviewBoard">INSERT INTO board(title, content, wdate, boardType,
-      memberId, memberNickname, countingStars)VALUES(#{title},#{content},NOW(),#{boardType},
-      #{memberId}, #{memberNickname},#{countingStars}) 
+      memberId, memberNickname,reviewPicturePath, countingStars)VALUES(#{title},#{content},NOW(),#{boardType},
+      #{memberId}, #{memberNickname}, #{reviewPicturePath} ,#{countingStars}) 
    </insert>
 
 	<select id="selectBoardMem" resultMap="membersResult">
@@ -129,7 +129,7 @@
       UPDATE board SET title=#{title},content=#{content}, countingStars=#{countingStars} WHERE boardNo=#{boardNo}
    </update>
    
-   <select id="totalStar" resultType="int">
-   		SELECT round(SUM(countingStars)/COUNT(*)) FROM board WHERE boardType="Review"
+   <select id="totalStars" resultType="double">
+   		SELECT round(SUM(countingStars)/COUNT(*),1) FROM board WHERE boardType="Review"
    </select>
 </mapper>

@@ -24,7 +24,7 @@ height: 100%;
 min-height: 100%;
 }
 </style>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 	function memberId_check() {

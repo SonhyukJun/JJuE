@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <link href="resource/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
 <link href="resource/static/css/common.css" rel="stylesheet">
@@ -139,7 +139,9 @@ color: #FFD200;
 
             </tr>
         </table>
-        
+         <div style="display:flex; justify-content:center; align-items:center;">
+        	<img src ="/IMAGES/${reviewBoard.reviewPicturePath }" width="500px", height="500px">
+        </div>
         <div align="left">
 	        <c:if test="${reviewBoard.boardNo!=minReview}">
 	        	<input type="button" class="btn" onclick="beforeReview()" value="이전글"/>

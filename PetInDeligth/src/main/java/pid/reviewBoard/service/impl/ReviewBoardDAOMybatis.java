@@ -94,10 +94,13 @@ public class ReviewBoardDAOMybatis extends EgovAbstractMapper implements ReviewB
 
 	@Override
 	public void reserveReviewWrite(ReserveVO reserveVo) throws Exception {
-		update("reserveReviewWrite",reserveVo);
-		
+		update("reserveReviewWrite",reserveVo);		
 	}
 
 
-
+	@Override
+	public double totalStars(BoardVO boardVo) throws Exception {
+		double result = selectOne("totalStars", boardVo);
+		return result;
+	}
 }

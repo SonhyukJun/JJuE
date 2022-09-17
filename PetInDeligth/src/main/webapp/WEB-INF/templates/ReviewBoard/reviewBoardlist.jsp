@@ -11,7 +11,7 @@
 <link href="resource/static/css/star.css" rel="stylesheet"/>
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .btn{
 	background-color: #FFA500;
@@ -41,7 +41,18 @@ color: #FFD200;
 <div class="a">
 <div class="container">
 		<div class="page-header">
+			<div class="pull-left">
 			<h1>후기 게시판</h1>
+			</div>
+			<div class="pull-right">
+				<h3>
+				<c:set var="totalStar" value="${totalStar}"/>
+        		<c:forEach var="a" begin="1" end="${totalStar}">
+        			<label class="stars">★</label>
+        		</c:forEach>
+        		총평점 : ${totalStars}점 				
+				</h3>
+			</div>
 			        		<!-- 로그인했으면 글쓰기버튼 보이게 설정.
 			<c:if test="${memberId!=null}">
 				<div class="pull-right" style="width: 100px; margin: 10px 0;">					

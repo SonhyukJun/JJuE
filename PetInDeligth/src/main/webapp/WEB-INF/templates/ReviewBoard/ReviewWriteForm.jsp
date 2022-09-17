@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <link href="resource/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
 <link href="resource/static/css/common.css" rel="stylesheet">
@@ -61,7 +61,7 @@ min-height: 100%;
          }
       })
    }
-
+/* 
    function insert() {
       var titleB = $('#title').val();
       var contentB = $('#content').val().replace(/\n/g,"<br>");
@@ -93,7 +93,7 @@ min-height: 100%;
          }
       })
    }
-   }
+   } */
 </script>
 <title>Insert title here</title>
 </head>
@@ -108,6 +108,8 @@ min-height: 100%;
         <br/>
         <input id="boardNo" value="${reviewBoard.boardNo}" type="hidden" />
         <input id="wdate" name="wdate" value="${reviewBoard.wdate}" type="hidden" />
+        
+        <form action="upload_ok.do" class="myform" method="post" enctype="multipart/form-data" id="insert">
         <input id="reserveNo" name="reserveNo" value="${reserve.reserveNo}" type="hidden" />
         <table class="table">
            <!-- 
@@ -127,25 +129,24 @@ min-height: 100%;
              
             <tr>
                 <th style="padding:13px 0 0 15px;">제목</th>
-                <td><input id="title" type="text" value="${reviewBoard.title}"/></td>
+                <td><input name="title" type="text" value="${reviewBoard.title}"/></td>
             </tr>
             <tr>
                 <th style="padding:13px 0 0 15px;">별점</th>
-                <td>
-                	<form class="mb-3" name="myform" id="myform" method="post">
-					<fieldset>
-						<input type="radio" name="reviewStar" value="5" id="rate5"><label for="rate5">★</label>
-						<input type="radio" name="reviewStar" value="4" id="rate4"><label for="rate4">★</label>
-						<input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
-						<input type="radio" name="reviewStar" value="2" id="rate2"><label for="rate2">★</label>
-						<input type="radio" name="reviewStar" value="1" id="rate1" checked="checked"><label	for="rate1">★</label>					</fieldset>
-					</form>                
-                </td>
+                <td>             	
+                	<fieldset>                						
+						<input type="radio" name="countingStars" value="5" id="rate5" ><label for="rate5">★</label>
+						<input type="radio" name="countingStars" value="4" id="rate4"><label for="rate4">★</label>
+						<input type="radio" name="countingStars" value="3" id="rate3"><label for="rate3">★</label>
+						<input type="radio" name="countingStars" value="2" id="rate2"><label for="rate2">★</label>
+						<input type="radio" name="countingStars" value="1" id="rate1" checked="checked"><label for="rate1">★</label>
+					</fieldset>  		
+ 				</td>
             </tr>
             
             <tr>
                 <th style="padding:13px 0 0 15px;">내용</th>
-                <td><textarea id="content" maxlength="140" rows="10" cols="100" style="height: 300px;">${reviewBoard.content}</textarea>
+                <td><textarea name="content" maxlength="140" rows="10" cols="100" style="height: 300px;">${reviewBoard.content}</textarea>
                 </td>
             </tr>
             
@@ -155,6 +156,7 @@ min-height: 100%;
                 <td><input type="file" id="file" name="file"></td>
             </tr>         
         </table>
+        </form>
         
         <!-- 
         <div >
@@ -167,7 +169,7 @@ min-height: 100%;
         <div align="right">
         <c:if test="${reviewBoard.boardNo==null}">
         <div class="pull-left">
-            <button type="button" class="btn" onclick="insert()" id="insert">등록</button>
+            <input type="submit" form="insert" class="btn"  value="등록"/>
          </div>
         </c:if>
         </div>

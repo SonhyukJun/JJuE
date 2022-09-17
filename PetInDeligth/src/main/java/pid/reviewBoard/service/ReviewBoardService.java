@@ -32,4 +32,6 @@ public interface ReviewBoardService {
 	ReserveVO reserveReview(ReserveVO reserveVo) throws Exception;
 	
 	void reserveReviewWrite(ReserveVO reserveVo) throws Exception;
+	
+	double totalStars(BoardVO boardVo) throws Exception;
 }

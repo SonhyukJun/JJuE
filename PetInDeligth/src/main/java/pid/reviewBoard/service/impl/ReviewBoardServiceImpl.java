@@ -95,6 +95,12 @@ public class ReviewBoardServiceImpl implements ReviewBoardService{
 		boardDAO.reserveReviewWrite(reserveVo);
 		
 	}
+
+	@Override
+	public double totalStars(BoardVO boardVo) throws Exception {
+		double result = boardDAO.totalStars(boardVo);
+		return result;
+	}
 	
 
 }
