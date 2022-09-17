@@ -74,17 +74,19 @@ min-height: 100%;
 					<th scope="col" width="100">제목</th>
 					<th scope="col" width="100">작성자</th>
 					<th scope="col" width="100">작성일</th>
+					<th scope="col" width="100"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="board" items="${boardList}">
 					
 					<tr>
-						<td align="center"><a href="reviewBoard.do?boardNo=${board.boardNo}">${board.boardNo}</a></td>
+						<td><a href="reviewBoard.do?boardNo=${board.boardNo}">${board.boardNo}</a></td>
 						<td>${board.boardType}</td>
 						<td><a href="QnAView.do?boardNo=${board.boardNo}">${board.title}</a></td>
 						<td>${board.memberNickname}</td>
 						<td><fmt:formatDate value="${board.wdate}" pattern="yyyy-MM-dd HH:mm"/></td>
+						<td></td>
 					</tr>
 					
 						<c:forEach var="replyQnABoard" items="${replyQnABoardList}">
@@ -96,6 +98,7 @@ min-height: 100%;
 									RE: '${board.title}' / '${board.memberNickname}'님 께서 문의 주신 내용입니다.</a></td>
 								<td>${replyQnABoard.memberNickname}</td>
 								<td><fmt:formatDate value="${replyQnABoard.wdate}" pattern="yyyy-MM-dd HH:mm"/></td>
+								<td></td>
 							</tr>
 						</c:if>
 					</c:forEach>

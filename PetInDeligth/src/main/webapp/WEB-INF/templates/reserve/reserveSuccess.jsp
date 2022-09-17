@@ -6,6 +6,14 @@
 <html>
 <head>
 <style>
+.btn{
+	background-color: #FFA500;
+	color: white;
+}
+.btn:hover{
+	background-color: #FFA500;
+	color: white;
+}
 html {
 height: 100%;
 }
@@ -18,6 +26,11 @@ min-height: 100%;
 }
 </style>
 <meta charset="UTF-8">
+<link href="resource/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
+<link href="resource/static/css/common.css" rel="stylesheet">
+<link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -26,12 +39,64 @@ min-height: 100%;
 <div class="a">
 <fmt:parseNumber var="startDate_N" value="${reserve.reserveStartDate.time / (1000*60*60*24)}" integerOnly="true" />
 <fmt:parseNumber var="endDate_N" value="${reserve.reserveEndDate.time / (1000*60*60*24)}" integerOnly="true" /> 
-<					 
-
-
+<div class="container">
+	<div class="page-header">
+            <h1>예약완료</h1>
+    </div>
 <div>
-<h2>${member.memberNickname}님의 예약이 완료되었습니다.</h2>
-	<table border="1" style="margin:30px;">
+
+<br/><br/><br/><br/>
+<div align="center">
+<img src="${pageContext.request.contextPath}/resource/img/petindelight.png" style="width:300px">
+<h2>${member.memberNickname}님의 예약이 완료되었습니다.</h2><br/><br/><br/><br/>
+</div>
+	<div align="center">
+	<table class="table" style="width:500px;">
+			<tr>
+                <th style="width: 100px">예약번호</th>
+                <td>${reserve.reserveNo}<br/></td>
+            </tr>
+            <tr>
+                <th style="width: 100px">예약일</th>
+                <td><fmt:formatDate value="${reserve.reserveStartDate}" pattern="yyyy-MM-dd" /> ~
+					<fmt:formatDate value="${reserve.reserveEndDate}" pattern="yyyy-MM-dd" /> <br/></td>
+            </tr>
+            <tr>
+                <th style="width: 100px">일수</th>
+                <td>${endDate_N - startDate_N}박<br/></td>
+            </tr>
+            <tr>
+                <th style="width: 100px">마리수</th>
+                <td>${reserve.count}마리<br/></td>
+            </tr>
+            <tr>
+                <th style="width: 100px">아이디</th>
+                <td>${reserve.memberId}<br/></td>
+            </tr>
+            <tr>
+                <th style="width: 100px">연락처</th>
+                <td>${member.memberTelNumber}<br/></td>
+            </tr>
+            <tr>
+                <th style="width: 100px">가격</th>
+                <td>${reserve.price}<br/></td>
+            </tr>
+            <tr>
+                <th style="width: 100px">요청사항</th>
+                <td>${reserve.reqContent}<br/></td>
+            </tr>
+            <tr>
+            	<td colspan="2">
+				    <div align="right">
+						<input type="button" class="btn" onclick="location='main.do'" value="홈으로"/>
+					</div>
+            	</td>
+            </tr>
+		</table>
+
+		</div>
+			
+			<!-- 
 			<tr>
 				<th>예약 번호</th>
 				<th>예약 정보</th>
@@ -52,10 +117,10 @@ min-height: 100%;
 					${reserve.price}<br>${endDate_N - startDate_N}박
 				</td>
 			</tr>
-	</table>
-	
-	<a href="main.do" class="btn">홈으로 가</a>
+				 -->
 
+	
+</div>
 </div>
 </div>
 <div id="footer" align="center">

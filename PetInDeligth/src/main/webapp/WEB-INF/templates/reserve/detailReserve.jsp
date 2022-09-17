@@ -55,29 +55,30 @@ min-height: 100%;
 	<input type="hidden" id="memberId" value="${member.memberId }" readonly/>
 	<input type="hidden" id="price" value="${room.price * days}" readonly/>
 	
-		<div>
+		<div align="center">
 			<section>
-				<table class="table">
+				<table class="table" style="width:800px;">
   		         
   		         <tr>
-  		         	<th rowspan="5" style="width: 200px"><h3>방 정보</h3></th>
+  		         	<th rowspan="5" style="width: 200px">
+  		         	<h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> 방 정보</h3></th>
 	                <td>날짜</td>
 	                <td><fmt:formatDate value="${reserve.reserveStartDate}" pattern="yyyy-MM-dd" />~
 				<fmt:formatDate value="${reserve.reserveEndDate}" pattern="yyyy-MM-dd" /> </td>
   		         </tr>
   		         
   		         <tr>
-	                <td>숙박일수</td>
+	                <td style="width: 200px" >숙박일수</td>
 	                <td>${days} 박</td>
   		         </tr>
   		         
   		        <tr>
-	                <td>마리수/최대마리수</td>
+	                <td style="width: 200px" >마리수/최대마리수</td>
 	                <td> ${reserve.count }/${room.count}</td>
   		         </tr>
   		         
   		        <tr>
-	                <td>결제금액</td>
+	                <td style="width: 200px" >결제금액</td>
 	                <td>${room.price * days}원</td>
   		         </tr>
   		         
@@ -85,59 +86,67 @@ min-height: 100%;
 				<br/><br/><br/><br/>
 				
 				
-				<table class="table">
+				<table class="table" style="width:800px;">
   		         <tr>
-	            	<th rowspan="3" style="width: 200px"><h3>예약자 정보</h3></th>
-	                <td>예약자</td>
+	            	<th rowspan="3" style="width: 300px">
+	            	<h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> 예약자 정보</h3></th>
+	                <td style="width: 20px">예약자</td>
 	                <td>${member.memberNickname} </td>
   		         </tr>
   		         
   		         <tr>
-	                <td>연락처</td>
+	                <td style="width: 200px">연락처</td>
 	                <td>${member.memberTelNumber}</td>
   		         </tr>
   		         
   		        <tr>
-	                <td>요청사항</td>
-	                <td><textarea id="reqContent" maxlength="140" rows="10" cols="100" style="height: 100px; Placeholder="주의사항을 입력해 주세요"></textarea></td>
+	                <td style="width: 200px">요청사항</td>
+	                <td><textarea id="reqContent" maxlength="100" rows="10" cols="60" style="height: 100px; Placeholder="주의사항을 입력해 주세요"></textarea></td>
   		         </tr>
 
 				</table>
 				<br/><br/><br/><br/>
 				
 				
-				<table class="table">
+				<table class="table" style="width:800px;">
 				 <tr>
-	            	<th style="width: 200px"><h3>주의사항</h3></th>
-	                <td colspan="2"><p>주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사<br/>
-	                항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/></p></td>
+	            	<th style="width: 200px">
+	            	<h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> 안내사항</h3></th>
+	                <td colspan="2">
+	                <br/><br/>
+	                <div align="center">
+	                <img src="${pageContext.request.contextPath}/resource/img/rule.jpg" style="width:500px; height:450px; ">
+	                </div>
+	                </td>
   		         </tr>
 				</table>
 				<br/><br/><br/><br/>
 				
-				<table class="table">
+				<table class="table" style="width:800px;">
 				 <tr>
-	            	<th style="width: 200px"><h3>약관</h3></th>
-	            	<td colspan="2"><p>주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사<br/>
-	                항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/>
-	               항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의<br/></p></td>
+	            	<th style="width: 200px">
+	            	<h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> 약관</h3></th>
+	            	<td colspan="2"><p>얘.... 뭐... 얘는/.. 조금... 보류....<br/>
+	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/>
+	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/>
+	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/>
+	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/></p></td>
   		         </tr>
 				</table>
 				<br/><br/><br/><br/>
 			
-		<div align="right">
-       		<h2>${days} 박 총 금액 : ${room.price * days}원&nbsp;<br/></h2><br>
-			<button class="btn" value="결제하기" onclick="payment()">결제하기</button>
-       	</div>
+			
+				<table class="table" style="width:800px;">					
+				<tr>
+				<td colspan="2">
+					<div align="right">
+			       		<h2>${days} 박 총 금액 : ${room.price * days}원&nbsp;<br/></h2><br>
+						<button class="btn" value="결제하기" onclick="payment()">결제하기</button>
+			       	</div>
+				</td>
+				</tr>
+				</table>
+
 		
 		<br/><br/><br/><br/>
 		

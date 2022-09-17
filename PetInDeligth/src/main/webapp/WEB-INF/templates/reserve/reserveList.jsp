@@ -17,20 +17,36 @@ height: 100%;
 .a {
 min-height: 100%;
 }
+.btn{
+	background-color: #FFA500;
+}
+.btn:hover{
+	background-color: #FFA500;
+}
 </style>
+<link href="resource/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
+<link href="resource/static/css/common.css" rel="stylesheet">
+<link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br><br><br>
+<br><br><br>
 <div class="a">
-
+ <div class="container">
+         <div class="page-header">
+            <h1>예약내역조회</h1>
+        </div>
+        <br/>
 <div id="reserveList">
-	<table border="1" style="padding:10px;">
+	<table class="table" >
 		<thead>
 			<tr>
 				<th><strong>예약 번호</strong></th>
+				<th>방번호</th>
 				<th>예약 정보</th>
 				<th>가격</th>
 				<th>진행상태</th>
@@ -42,31 +58,32 @@ min-height: 100%;
 	<fmt:parseNumber var="endDate_N" value="${reserve.reserveEndDate.time / (1000*60*60*24)}" integerOnly="true" /> 
 				<tr>
 					<td>${reserve.reserveNo}</td>
+					<td>${reserve.roomNo}번</td>
 					<td>
-						예약 방 ${reserve.roomNo }<br>
-						예약 일 <fmt:formatDate value="${reserve.reserveStartDate}" pattern="yyyy-MM-dd" /> ~
-						<fmt:formatDate value="${reserve.reserveEndDate}" pattern="yyyy-MM-dd" /> <br>
-						${reserve.count}마리
+						- 예약 일 : <fmt:formatDate value="${reserve.reserveStartDate}" pattern="yyyy-MM-dd" /> ~
+						<fmt:formatDate value="${reserve.reserveEndDate}" pattern="yyyy-MM-dd" />
+						- ${endDate_N - startDate_N}박<br>
+						- ${reserve.count}마리
 					</td>
 					<td>
-						${reserve.price}<br>${endDate_N - startDate_N}박
+						${reserve.price}<br>
 					</td>
 					<c:if test="${reserve.reserveType == 'Y'}">
 						<td>
-							예약중 <br>
+							예약중 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							<button onclick="reserveCancle(${reserve.reserveNo})">취소하기</button>
 						</td>
 					</c:if>
 					<c:if test="${reserve.reserveType == 'I'}">
 						<td>
-							사용중 <br>
+							사용중 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							<button onclick="window.open('http://192.168.0.107:81/stream','${room.roomNo}room', 'width=600,height=600')">방 보기</button>
 						</td>
 					</c:if>
 					<c:if test="${reserve.reserveType == 'O'}">
 						<td>
-							체크아웃
-							<button onclick="reserveReview(${reserve.reserveNo})">리뷰작성</button>
+							체크아웃  &nbsp&nbsp&nbsp&nbsp&nbsp
+							<button  onclick="reserveReview(${reserve.reserveNo})">리뷰작성</button>
 						</td>
 					</c:if>
 					<c:if test="${reserve.reserveType == 'R'}">
@@ -133,6 +150,7 @@ min-height: 100%;
 	</c:if>
 </div>
 
+</div>
 </div>
 </body>
 </html>

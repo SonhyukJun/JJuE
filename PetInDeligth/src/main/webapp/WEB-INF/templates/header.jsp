@@ -46,7 +46,7 @@ cursor: default;
 	
 	<div class="navbar navbar-flame navbar-fixed-top">
             <div class="navbar-header">
-                 <a href="/PetInDeligth/login.do" class="navbar-brand" style="text-decoration:none;">          
+                 <a href="/PetInDelight/login.do" class="navbar-brand" style="text-decoration:none;">          
                     <span style="vertical-align:middle;">
                     <img src="${pageContext.request.contextPath}/resource/img/ex1.png">
                     </span>

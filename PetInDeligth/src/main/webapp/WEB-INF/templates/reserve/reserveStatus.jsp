@@ -35,7 +35,12 @@ height: 100%;
 .a {
 min-height: 100%;
 }
-
+.btn{
+	background-color: #FFA500;
+}
+.btn:hover{
+	background-color: #FFA500;
+}
 </style>
 </head>
 <body>

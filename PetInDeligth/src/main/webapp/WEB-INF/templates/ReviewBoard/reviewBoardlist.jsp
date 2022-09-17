@@ -29,7 +29,7 @@ height: 100%;
 .a {
 min-height: 100%;
 }
-.stars {
+.stars{
 color: #FFD200;
 }
 </style>
@@ -86,7 +86,7 @@ color: #FFD200;
         		<!-- http://localhost:9090/board?id=2 -->
         			<c:forEach var="reviewBoard" items="${reviewBoardList}">
         			<tr>
-        				<td align="center"><a href="reviewBoard.do?boardNo=${reviewBoard.boardNo}">${reviewBoard.boardNo}</a></td>
+        				<td><a href="reviewBoard.do?boardNo=${reviewBoard.boardNo}">${reviewBoard.boardNo}</a></td>
         				<td>${reviewBoard.boardType}</td>
         				<td><a href="reviewBoard.do?boardNo=${reviewBoard.boardNo}">${reviewBoard.title}</a></td>
         				<td>${reviewBoard.memberNickname}</td>

@@ -49,9 +49,11 @@ min-height: 100%;
             <h1>객실 예약하기</h1>
     </div>
 
-        <table  class="table">
-
-<div>
+	<div align="center">
+	      <table  class="table" style="width:800px;">
+	
+	<div>
+	
 	<div align="center">
 		<div>
 			<img src="${pageContext.request.contextPath}/resource/img/${room.picturePath}" class="img-thumbnail" style="width:300px; height:300; ">
@@ -61,43 +63,52 @@ min-height: 100%;
 
 		 <form id="reserve" action="detailreserve.do" method="post">
 		 	<tr>
-                <th  style="width: 500px" ><h3>ROOM ${room.roomNo}&nbsp;<br/></h3></th>
+                <th  style="width: 500px"><h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> ROOM ${room.roomNo} 
+                <img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> </h3></th>
                 <td><input type="hidden" name="roomNo" value="${room.roomNo}" readonly></td>
             </tr>
 		    <tr>
-                <th style="width: 100px">체크인</th>
+                <th style="width: 50px">체크인</th>
                 <td><input type="text" name="reserveStartDatee" style="width:90px;" value="<fmt:formatDate value="${reserve.reserveStartDate}" pattern="yyyy-MM-dd" />" readonly><br/></td>
             </tr>
             <tr>
-           		<th style="width: 100px">체크아웃</th>
+           		<th style="width: 50px">체크아웃</th>
                 <td><input type="text" name="reserveEndDatee" style="width:90px;" value="<fmt:formatDate value="${reserve.reserveEndDate}" pattern="yyyy-MM-dd" />" readonly><br/></td>
             </tr>
             <tr>
-           		<th style="width: 100px">마리수</th>
+           		<th style="width: 50px">마리수</th>
                 <td><input type="text" name="count" style="width:25px;" value="${reserve.count}" readonly><br/></td>
             </tr>
             <tr>
-            	<th style="width: 100px">일수</th>
+            	<th style="width: 50px">일수</th>
                 <td> ${days} 박<br/></td>
             </tr>
             <tr>
-            	<th style="width: 100px">가격</th>
-                <td>${room.price}<br/><br/></td>
+            	<th style="width: 50px">가격</th>
+                <td>${room.price}<br/></td>
             </tr>
             
            <tr>
-            	<th style="width: 100px">최대 마리수</th>
-                <td> ${room.count}<br/><br/></td>
+            	<th style="width: 50px">최대 마리수</th>
+                <td> ${room.count} 마리<br/></td>
             </tr>
            </form>
+           <tr>
+				<td colspan="2">
+				<div align="right">
+		       		<h2>${days} 박 총 금액 : ${room.price * days}원&nbsp;<br/></h2><br>
+		       		 <input class="btn" type="submit" form="reserve" value="객실 예약하기">
+		       	</div>
+		       	</td>
+           </tr>
+           
        </table>
 
-       	
-       	<div align="right">
-       		<h2>${days} 박 총 금액 : ${room.price * days}원&nbsp;<br/></h2><br>
-       		 <input class="btn" type="submit" form="reserve" value="객실 예약하기">
-       	</div>
        
+      
+</div>
+       	
+
    <!--     
     <div>
         <form id="reserve" action="detailreserve.do" method="post">    

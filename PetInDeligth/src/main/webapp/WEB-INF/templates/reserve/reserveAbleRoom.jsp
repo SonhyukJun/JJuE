@@ -73,10 +73,12 @@ min-height: 100%;
 </script>
 </head>
 <body>
-<h1>
-	TEST  Reserve Able Room Page
-</h1>
+
 <div class="a">
+<div class="container">
+	<div class="page-header">
+		<h1>예약가능한 방</h1>
+	</div>
 	<div>
 			<c:forEach items="${roomList}" var="room">
 				<div style="display:inline-flex; flex-direction:column; justify-content:flex-start; align-items:center;">
@@ -85,23 +87,23 @@ min-height: 100%;
 					<a href="#" onclick="goGet('roominformationview.do','GET', ${room.roomNo}); return false;">
 					<%-- <a href="#" onclick="goInfromationView(${room.roomNo}); return false;"> --%>
 					<div  style="display:inline-flex;justify-content:flex-start; align-items:center;">
+						
 						<div style="width:50px; margin:10px;">
-							<c:out value="${room.roomNo}"/>
+							<c:out value="${room.roomNo}번방"/>
 						</div>
 						<div>
-							<c:out value="${room.price}"/>
-							<p><c:out value="${room.count}"/></p>
+							<br/>
+							<c:out value="가격 : ${room.price}"/>
+							<p><c:out value="최대 마리 수 : ${room.count}"/></p>
+							<br/>
 						</div>
 					</div>
 					</a>
 				</div>
 			</c:forEach>
 	</div>
-	<a href="#">
-		<div>
-			<h1>test</h1>
-		</div>
-	</a>
+
+</div>
 </div>
 </body>
 </html>
