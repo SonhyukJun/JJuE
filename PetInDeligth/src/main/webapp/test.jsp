@@ -3,34 +3,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link href="resource/static/css/star.css" rel="stylesheet"/>
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script type="text/javascript">
-	
-	function star() {
-		var a = $('input[name="reviewStar"]:checked').val();
-		alert(a)		
-	}
-</script>
+<title>Javascript Demo</title>
+<style>
+    #layerTest {
+    	display: none;
+    }
+</style>
 </head>
 <body>
-<form class="mb-3" name="myform" id="myform" method="post">
-	<fieldset>
-		<span class="text-bold">별점을 선택해주세요</span>
-		<input type="radio" name="reviewStar" value="5" onclick="star5()" id="rate1"><label
-			for="rate1">🐾</label>
-		<input type="radio" name="reviewStar" value="4" id="rate2"><label
-			for="rate2">🐾</label>
-		<input type="radio" name="reviewStar" value="3" id="rate3"><label
-			for="rate3">🐾</label>
-		<input type="radio" name="reviewStar" value="2" id="rate4"><label
-			for="rate4">🐾</label>
-		<input type="radio" name="reviewStar" value="1" id="rate5" checked="checked"><label
-			for="rate5">🐾</label>
-		<input type="button" onclick="star()" value="dddd"/>
-	</fieldset>
-</form>
+<div>
+    <a href="javascript:;" id="myTest" title="새창 열림" onclick="lyOpen()">테스트</a>
+    <input type="text" id="myTextField1" value="Text field1">    
+    <input type="text" id="myTextField2" value="Text field2">
+</div>
+<div id="layerTest">
+    <p>레이어 테스트. 디자인은 무시합니다.</p>
+    <a href="javascript:;" id="myClose" onclick="lyClose()">닫기</a>
+</div>
+<div>
+    <input type="text" id="myTextField3" value="Text field3">
+</div>
+<script> 
+   
+    function lyOpen(){
+        document.getElementById("layerTest").style.display = "block";
+        document.getElementById("myClose").focus(); //주석처리 시 myTextField1, myTextField2 지난 후 레이어로 이동
+    }
+   
+    function lyClose(){
+    	document.getElementById("layerTest").style.display = "none";
+        document.getElementById("myTest").focus(); //주석처리 시 myTextField3로 이동
+    }
+   
+</script>
 </body>
 </html>
+출처: https://travelpark.tistory.com/73 [Bon Voyage!:티스토리]

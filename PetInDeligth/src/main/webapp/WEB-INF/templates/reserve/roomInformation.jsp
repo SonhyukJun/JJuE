@@ -11,6 +11,7 @@
 <link href="resource/static/css/common.css" rel="stylesheet">
 <link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <!-- 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -41,7 +42,6 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br/><br/><br/><br/><br/>
 <div class="a">
 <div class="container">
 
@@ -51,7 +51,6 @@ min-height: 100%;
 
 	<div align="center">
 	      <table  class="table" style="width:800px;">
-	
 	<div>
 	
 	<div align="center">
@@ -63,7 +62,7 @@ min-height: 100%;
 
 		 <form id="reserve" action="detailreserve.do" method="post">
 		 	<tr>
-                <th  style="width: 500px"><h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> ROOM ${room.roomNo} 
+                <th style="width: 500px"><h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> ROOM ${room.roomNo} 
                 <img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> </h3></th>
                 <td><input type="hidden" name="roomNo" value="${room.roomNo}" readonly></td>
             </tr>

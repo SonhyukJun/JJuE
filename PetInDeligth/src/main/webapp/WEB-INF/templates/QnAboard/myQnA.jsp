@@ -9,6 +9,7 @@
 <link href="resource/static/css/common.css" rel="stylesheet">
 <link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <head>
 <meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -33,7 +34,6 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br><br><br>
 <div class="a">
 <div class="container">
 	<div class="page-header">
@@ -63,7 +63,7 @@ min-height: 100%;
 	</form>
 		
 	<div id="mainHide">
-		<table class="table table-hover">
+		<table class="table table-hover" style="table-layout: fixed">
 			<thead>
 				<tr>
 					<th scope="col" width="50">글번호</th>

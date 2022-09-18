@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <style>
 .btn{
 	background-color: #FFA500;
@@ -98,7 +98,6 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<br><br><br><br><br>
 <div class="a">
 <div class="container" id="wrap">
 	<div align="center">

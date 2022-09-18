@@ -72,14 +72,7 @@ public class MembersController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, HttpServletRequest request) {
-		String memberId = "";
-		session = request.getSession();
-		memberId = (String) session.getAttribute("SessionMemberId");
-		if (memberId != null) {
-			return "main";
-		} else {
-			return "login";
-		}
+		return "login";
 	}
 
 	@ResponseBody

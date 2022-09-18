@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <link href="resource/static/css/bootstrap.min.css" rel="stylesheet">
@@ -10,14 +11,17 @@
 <link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
 <link href="resource/static/css/star.css" rel="stylesheet"/>
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <head>
 <meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .btn{
 	background-color: #FFA500;
+	color: white;
 }
 .btn:hover{
 	background-color: #FFA500;
+	color: white;
 }
 html {
 height: 100%;
@@ -37,7 +41,6 @@ color: #FFD200;
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br><br><br>
 <div class="a">
 <div class="container">
 		<div class="page-header">
@@ -81,7 +84,7 @@ color: #FFD200;
         
         <div id="mainHide">
         	<!-- 테이블에 마우스를 올렸을 때 마우스 커서가 있는 행이 다른 색으로 변한다 -->
-        	<table class="table table-hover">
+        	<table class="table table-hover" >
         		<thead>
         			<tr>
         			<!-- scope="col" 해당 th가 열(column)을 위한 헤더 셀이다. -->
@@ -96,10 +99,21 @@ color: #FFD200;
         		<tbody>
         		<!-- http://localhost:9090/board?id=2 -->
         			<c:forEach var="reviewBoard" items="${reviewBoardList}">
+        			<c:set var="title" value="${reviewBoard.title}"/>
+					<c:set var="titleView" value="${fn:substring(title,0,8) }"/>
         			<tr>
         				<td><a href="reviewBoard.do?boardNo=${reviewBoard.boardNo}">${reviewBoard.boardNo}</a></td>
         				<td>${reviewBoard.boardType}</td>
-        				<td><a href="reviewBoard.do?boardNo=${reviewBoard.boardNo}">${reviewBoard.title}</a></td>
+        				<td><a href="reviewBoard.do?boardNo=${reviewBoard.boardNo}">
+        				<c:choose>
+							<c:when test="${titleView.length()<8}">
+								${titleView}
+							</c:when>
+							<c:otherwise>
+								${titleView}...
+							</c:otherwise>
+						</c:choose>
+        				</a></td>
         				<td>${reviewBoard.memberNickname}</td>
         				<td><fmt:formatDate value="${reviewBoard.wdate}" pattern="yyyy-MM-dd HH:mm"/></td>
         				<td>
@@ -118,15 +132,17 @@ color: #FFD200;
     <div>       
       <nav aria-label="Page navigation" style="text-align: center;">	
 			<div class="pagination" style="text-align: center">
-				<c:if test="${firstPage > pageList }">
-					<a class="changePage" href="reviewBoardlist.do?viewPage=${firstPage - pageList}">[이전]</a>
-				</c:if>	
-				<c:forEach var="i" begin="${firstPage}" end="${lastPage}">																
-					<a class="changePage" href="reviewBoardlist.do?viewPage=${i}">[ ${i} ]</a>						 						
-				</c:forEach>
-				<c:if test="${lastPage < totalPage}">
-					<a class="changePage" href="reviewBoardlist.do?viewPage=${firstPage + pageList}">[다음]</a>
-				</c:if>
+				<ul class="pagination">
+					<c:if test="${firstPage > pageList }">
+						<li><a class="changePage" href="reviewBoardlist.do?viewPage=${firstPage - pageList}">이전</a></li>
+					</c:if>	
+					<c:forEach var="i" begin="${firstPage}" end="${lastPage}">																
+						<li><a class="changePage" href="reviewBoardlist.do?viewPage=${i}">${i}</a></li>
+					</c:forEach>
+					<c:if test="${lastPage < totalPage}">
+						<li><a class="changePage" href="reviewBoardlist.do?viewPage=${firstPage + pageList}">다음</a></li>
+					</c:if>
+				</ul>
 			</div>
 			</nav>	
 		</div>

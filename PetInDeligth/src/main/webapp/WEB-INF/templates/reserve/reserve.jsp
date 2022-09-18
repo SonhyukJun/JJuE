@@ -22,18 +22,23 @@ min-height: 100%;
 }
  
  </style>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br/><br/><br/><br><br>
 <div class="a">
 <div>
 	<div id="wrap">
 		<div>
 			<label for="datepicker1">체크인</label><br>
-			<input type="text" class="datepicker" id="datepicker1">
+			<input type="text" class="datepicker" id="datepicker1" autocomplete="off">
 		</div>
 		&nbsp;
 		<div>
@@ -43,7 +48,7 @@ min-height: 100%;
 		&nbsp;
 		<div>
 			&nbsp;<label for="datepicker2">체크아웃</label><br>
-			<input type="text" class="datepicker" id="datepicker2">
+			<input type="text" class="datepicker" id="datepicker2" autocomplete="off">
 		</div>
 		&nbsp;
 		<div>
@@ -67,7 +72,7 @@ min-height: 100%;
 	<div class="container" style="width: 100%">
 		<div>		
 			<div id = "showRoom">
-			</div>	
+			</div>
 		</div>	
 	</div>
 </div> 

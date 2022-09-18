@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <title>Insert title here</title>
 <style>
 /* .a{
@@ -86,9 +87,34 @@ min-height: 100%;
 					<%-- <a href="roominformationview.do?roomNo=${room.roomNo}"> --%>
 					<a href="#" onclick="goGet('roominformationview.do','GET', ${room.roomNo}); return false;">
 					<%-- <a href="#" onclick="goInfromationView(${room.roomNo}); return false;"> --%>
-					<div  style="display:inline-flex;justify-content:flex-start; align-items:center;">
-						
-						<div style="width:50px; margin:10px;">
+					<div style="display:inline-flex;justify-content:flex-start; align-items:center;">
+						<table class="table ">
+							<tr>
+								<th>
+									방번호
+								</th>
+								<td align="center">
+									${room.roomNo}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									가격
+								</th>
+								<td>
+									${room.price}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									최대 마리 수
+								</th>
+								<td align="center">
+									${room.count}
+								</td>
+							</tr>
+						</table>
+						<%-- <div style="width:50px; margin:10px;">
 							<c:out value="${room.roomNo}번방"/>
 						</div>
 						<div>
@@ -96,7 +122,7 @@ min-height: 100%;
 							<c:out value="가격 : ${room.price}"/>
 							<p><c:out value="최대 마리 수 : ${room.count}"/></p>
 							<br/>
-						</div>
+						</div> --%>
 					</div>
 					</a>
 				</div>

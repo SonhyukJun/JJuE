@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +93,6 @@ color: #FFD200;
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br><br><br>
 <div class="a">
 <div class="container">
 	<div class="page-header">
@@ -132,16 +132,21 @@ color: #FFD200;
                 <th style="width: 100px">제목</th>
                 <td>${reviewBoard.title}<br/></td>
             </tr>
-            
-            <tr>
+            <tr>            	
                 <th style="width: 100px">내용</th>
-                <td width=300 height=300 style='table-layout:fixed'>${reviewBoard.content}</td>
-
-            </tr>
-        </table>
-         <div style="display:flex; justify-content:center; align-items:center;">
-        	<img src ="/IMAGES/${reviewBoard.reviewPicturePath }" width="500px", height="500px">
-        </div>
+                <td width=300 height=300 style='table-layout:fixed'>
+                 ${reviewBoard.content}
+ 
+                <c:set var="image" value="${reviewBoard.reviewPicturePath }"/>     
+         		<c:if test="${fn:contains(image, '.')}">
+         		<div style="display:flex; justify-content:left; align-items:left;">         	
+        			<img src ="/IMAGES/${reviewBoard.reviewPicturePath }" width="300px", height="300px">
+       			</div>
+       			</c:if>
+       			</td>
+            </tr>            
+        </table>        
+        
         <div align="left">
 	        <c:if test="${reviewBoard.boardNo!=minReview}">
 	        	<input type="button" class="btn" onclick="beforeReview()" value="이전글"/>

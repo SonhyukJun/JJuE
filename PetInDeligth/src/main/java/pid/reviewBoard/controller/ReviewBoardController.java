@@ -312,7 +312,14 @@ public class ReviewBoardController {
 		System.out.println("용량크기(byte) : " + size);
 		// 서버에 저장할 파일이름 fileextension으로 .jsp이런식의 확장자 명을 구함
 		// 여기서 화이트 리스트로 정리해서 파일 업로드 막아야함....
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+		
+		
+		String fileExtension = "";
+		
+		if(fileRealName != "") {
+			fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+			
+		}
 		// String uploadFolder =
 		// "/Users/roopre/egov/PetInDeligth/src/main/webapp/resource/upload";
 		String uploadFolder = "C:\\picture";

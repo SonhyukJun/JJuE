@@ -21,6 +21,7 @@
 			success: function(data){
 				if(data == "ok"){
 					alert("입실 처리 완료")
+					document.location.reload();
 				}
 			}			
 		})
@@ -38,6 +39,7 @@
 			success: function(data){
 				if(data == "ok"){
 					alert("퇴실 처리 완료")
+					 document.location.reload();
 				}
 			}
 		})
@@ -75,10 +77,10 @@
 					<td align="center">${reserveListAll.reserveType}</td>
 					<td align="center">${reserveListAll.reqContent}</td>
 					<c:if test="${reserveListAll.reserveType == 'Y'}">
-						<td><input type="button" onclick="checkIn(${reserveListAll.reserveNo})" value="입실"/></td>
+					<td><input type="button" onclick="checkIn(${reserveListAll.reserveNo})" value="입실"/></td>
 					</c:if>
 					<c:if test="${reserveListAll.reserveType == 'I'}">
-						<td><input type="button" onclick="checkOut(${reserveListAll.reserveNo})" value="퇴실"/></td>
+					<td><input type="button" onclick="checkOut(${reserveListAll.reserveNo})" value="퇴실"/></td>
 					</c:if>			
 				</tr>
 				</c:forEach>

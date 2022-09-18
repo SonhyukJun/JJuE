@@ -2,21 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
-<link href="resource/static/css/bootstrap.min.css" rel="stylesheet">
-<link href="resource/static/css/font-awesome.min.css" rel="stylesheet">
-<link href="resource/static/css/common.css" rel="stylesheet">
-<link href="resource/static/css/custom-theme.min.css" rel="stylesheet">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 .btn{
 	background-color: #FFA500;
+	color: white;
 }
 .btn:hover{
 	background-color: #FFA500;
+	color: white;
 }
 html {
 height: 100%;
@@ -33,19 +33,20 @@ min-height: 100%;
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br><br><br>
 <div class="a">
+
 <div class="container">
 	<div class="page-header">
-		<h1>QnA 게시판</h1>
+		<div class="pull-left">
+		<h1>QnA 게시판</h1>			
+		</div>
+		<div class="pull-right"><br>
 		<c:if test="${SessionMemberId ne null}">
-			<div class="pull-right" style="width: 100px; margin: 10px 0;">
-				<input type="button" onclick="location.href='insert.do?memberId=${SessionMemberId}'" class="btn btn-orange btn-block" value="등록"/>
-			</div>
-			<div class="pull-left" style="width: 100px; margin: 10px 0;">
-				<input type="button" onclick="location.href='myQuestion.do?memberId=${SessionMemberId}'" class="btn btn-orange btn-block" value="내 글보기"/>
-			</div>
+			<span><input type="button" onclick="location.href='myQuestion.do?memberId=${SessionMemberId}'" class="btn" value="내 글보기"/></span>		
+			<span><input type="button" onclick="location.href='insert.do?memberId=${SessionMemberId}'" class="btn" value="등록"/></span>
+			
 		</c:if>
+		</div>		
 	</div>
 	<br/>
 
@@ -66,7 +67,7 @@ min-height: 100%;
 	</form>
 		
 	<div id="mainHide">
-		<table class="table table-hover">
+		<table class="table table-hover" >
 			<thead>
 				<tr>
 					<th scope="col" width="50">글번호</th>
@@ -79,11 +80,22 @@ min-height: 100%;
 			</thead>
 			<tbody>
 				<c:forEach var="board" items="${boardList}">
+					<c:set var="title" value="${board.title}"/>
+					<c:set var="titleView" value="${fn:substring(title,0,12) }"/>
 					
 					<tr>
 						<td><a href="reviewBoard.do?boardNo=${board.boardNo}">${board.boardNo}</a></td>
 						<td>${board.boardType}</td>
-						<td><a href="QnAView.do?boardNo=${board.boardNo}">${board.title}</a></td>
+						<td><a href="QnAView.do?boardNo=${board.boardNo}">
+						<c:choose>
+							<c:when test="${titleView.length()<12}">
+								${titleView}
+							</c:when>
+							<c:otherwise>
+								${titleView}...
+							</c:otherwise>
+						</c:choose>
+						</a></td>
 						<td>${board.memberNickname}</td>
 						<td><fmt:formatDate value="${board.wdate}" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td></td>
@@ -109,15 +121,17 @@ min-height: 100%;
 			<div>
 				<nav aria-label="Page navigation" style="text-align: center;">
 					<div style="text-align: center">
-						<c:if test="${firstPage > pageList}">
-							<a href="freeboard.do?viewPage=${firstPage - pageList}">[이전]</a>
-						</c:if>
-						<c:forEach var="i" begin="${firstPage}" end="${lastPage}">
-							<a href="freeboard.do?viewPage=${i}">[ ${i} ]</a>
-						</c:forEach>
-						<c:if test="${lastPage < totalPage}">
-							<a href="freeboard.do?viewPage=${firstPage + pageList}">[다음]</a>
-						</c:if>
+						<ul class="pagination">
+							<c:if test="${firstPage > pageList}">
+								<li><a href="freeboard.do?viewPage=${firstPage - pageList}">이전</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${firstPage}" end="${lastPage}">
+								<li><a href="freeboard.do?viewPage=${i}">${i}</a></li> 
+							</c:forEach>
+							<c:if test="${lastPage < totalPage}">
+								<li><a href="freeboard.do?viewPage=${firstPage + pageList}">다음</a></li>
+							</c:if>
+						</ul>
 					</div>
 				</nav>
 			</div>
