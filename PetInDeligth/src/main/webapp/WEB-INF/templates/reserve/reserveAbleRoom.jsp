@@ -80,7 +80,7 @@ min-height: 100%;
 	<div class="page-header">
 		<h1>예약가능한 방</h1>
 	</div>
-	<div>
+	<div align="center">
 			<c:forEach items="${roomList}" var="room">
 				<div style="display:inline-flex; flex-direction:column; justify-content:flex-start; align-items:center;">
 					<img src="${pageContext.request.contextPath}/resource/img/${room.picturePath}" class="img-thumbnail" style="width:300px; height:300; ">

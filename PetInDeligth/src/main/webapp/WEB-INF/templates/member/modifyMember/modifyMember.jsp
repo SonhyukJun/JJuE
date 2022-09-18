@@ -38,7 +38,7 @@ min-height: 100%;
 		
 		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
 		
-		const url = "http://localhost:8080/PetInDelight/modifyMemberPassword.do"; 
+		const url = "https://42a8-58-224-53-148.ngrok.io/PetInDelight/modifyMemberPassword.do"; 
 		window.open(url, "비밀번호 변경", windowStatus);		
 	}
 	function modifyMemberNickname() {
@@ -50,7 +50,7 @@ min-height: 100%;
 		
 		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
 		
-		const url = "http://localhost:8080/PetInDelight/modifyMemberNickname.do";
+		const url = "https://42a8-58-224-53-148.ngrok.io/PetInDelight/modifyMemberNickname.do";
 		window.open(url, "닉네임 변경", windowStatus);		
 	}
 	function modifyMemberTelNumber() {
@@ -62,7 +62,7 @@ min-height: 100%;
 		
 		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
 		
-		const url = "http://localhost:8080/PetInDelight/modifyMemberTelNumber.do";
+		const url = "https://42a8-58-224-53-148.ngrok.io/PetInDelight/modifyMemberTelNumber.do";
 		window.open(url, "전화번호 변경", windowStatus);		
 	}
 	

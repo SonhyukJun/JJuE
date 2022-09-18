@@ -14,12 +14,13 @@ height: 100%;
 .a {
 min-height: 100%;
 }
-#wrap{
+.wrap{
   display: flex;
   justify-content: center;
   align-items:center;
 /*   min-height: 100vh; */
 }
+
  
  </style>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -35,7 +36,7 @@ min-height: 100%;
 <jsp:include page="../header.jsp"></jsp:include>
 <div class="a">
 <div>
-	<div id="wrap">
+	<div class="wrap">
 		<div>
 			<label for="datepicker1">체크인</label><br>
 			<input type="text" class="datepicker" id="datepicker1" autocomplete="off">
@@ -69,6 +70,19 @@ min-height: 100%;
 		</div>
 	</div>
 <hr></hr>
+<div class="wrap" id="show">
+	<div align="center">
+   <img src="${pageContext.request.contextPath}/resource/img/petindelight.png" style="width:300px; opacity:1;"><br>
+    <!-- <img src="${pageContext.request.contextPath}/resource/img/2.png" height="50%" width="100%"> <br><br> --> 
+     <p style="color:black">
+
+     Pet In Delight를 방문해 주셔서 감사합니다.<br>
+  	 	<h2>예약하려는 입실,퇴실날짜 및 마리수를 선택하여 주십시오.</h2><br>
+     "보호자님이 믿고 맡길 수 있는" Pet In Delight가 되겠습니다.
+
+     </p>     
+</div>
+</div>
 	<div class="container" style="width: 100%">
 		<div>		
 			<div id = "showRoom">
@@ -198,7 +212,9 @@ $(document).ready(function(){
 			type: "POST",
 			data: sendDate,
 			success: function(data){
+				$('#show').remove();
 				$('#showRoom').html(data);
+				
 			}
 		});
 		

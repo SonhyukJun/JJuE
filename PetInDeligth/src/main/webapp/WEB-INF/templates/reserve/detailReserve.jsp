@@ -126,11 +126,14 @@ min-height: 100%;
 				 <tr>
 	            	<th style="width: 200px">
 	            	<h3><img src="${pageContext.request.contextPath}/resource/img/pawprint.png" style="width:25px; height:25px; "> 약관</h3></th>
-	            	<td colspan="2"><p>얘.... 뭐... 얘는/.. 조금... 보류....<br/>
-	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/>
-	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/>
-	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/>
-	            	얘.... 뭐... 얘는/.. 조금... 보류....<br/></p></td>
+	            	<td colspan="2"><p>	            	
+					체크인 12:00 이후, 체크아웃 11:00 이전<br>
+					1박기준<br>
+					30,000원 / 1멍멍<br>
+					50,000원 / 3멍멍<br>
+					80,000원 / 5멍멍<br>
+					(입실 후 23시간 기준)<br>     	
+	            	</p></td>
   		         </tr>
 				</table>
 				<br/><br/><br/><br/>

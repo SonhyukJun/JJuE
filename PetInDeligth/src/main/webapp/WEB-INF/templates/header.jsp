@@ -85,12 +85,13 @@ cursor: default;
                    <li>
                       <a href="admin.do">관리 메뉴</a>
                      </li> 
-                   <li>         
-                         <a href="logout.do">LOGOUT</a>
-                      </li>
+                   		
                       <li id="asd">
                       <a class="disable">${SessionMemberGrade}님 반갑습니다.</a>
-                   <li>
+                      </li>
+                	 <li>         
+                         <a href="logout.do">LOGOUT</a>
+                      </li>
                    <li>
                       <a class="disable">&nbsp;&nbsp;&nbsp;&nbsp;</a>
                    </li>
@@ -103,13 +104,13 @@ cursor: default;
             				<li><a href="reserveStatus.do">예약내역조회</a></li>
             			 	<li><a href="selectMember.do">개인정보조회</a></li>            				
           			</ul>
-        		</li> 
-                   <li>         
-                         <a href="logout.do">LOGOUT</a>
-                    </li>   
+        		</li>                      
                     <li id="asd">
                       <a class="disable">${SessionMemberNickname}님 반갑습니다.</a>
                    </li>
+                   <li>         
+                         <a href="logout.do">LOGOUT</a>
+                    </li> 
                    <li>
                       <a class="disable">&nbsp;&nbsp;&nbsp;&nbsp;</a>
                    </li>

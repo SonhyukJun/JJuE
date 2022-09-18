@@ -50,7 +50,7 @@
 <body>
 <div class="container">
 	<div id="mainHide">	
-		<table class="table table-hover">
+		<table class="table table-hover" >
 			<thead>
 				<tr>
 					<td align="center">예약번호</td>
